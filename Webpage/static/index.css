@@ -1,0 +1,145 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    overflow: hidden;
+}
+.content-wrapper {
+    display: flex;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+.col {
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+}
+#sidebar {
+    transition: all 0.3s ease;
+}
+.hide-sidebar {
+    width: 0 !important;
+    overflow: hidden;
+}
+.show-sidebar {
+    width: 200px !important; /* Adjust as needed */
+}
+#section2 {
+    flex: 1; /* Occupy remaining space */
+}
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+  }
+
+.nav p {
+    margin-top: 0;
+    padding-left: 20px;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.banner {
+    background-image: url('https://images.pexels.com/photos/3329243/pexels-photo-3329243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: top center;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Black with 35% transparency */
+    z-index: 1;
+}
+.banner p, .banner a {
+    z-index: 2; /* Ensure text appears above the overlay */
+    position: relative;
+}
+
+.banner .main-title {
+    font-family: 'Outfit';
+    font-size: 6em;
+    letter-spacing: 5px;
+    
+    font-weight: bolder;
+    color: white;
+    text-shadow: #cccccc;
+}
+.banner .subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2em;
+}
+
+.banner .link{
+    font-family: 'Manrope', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    z-index: 2; /* Ensure text appears above the overlay */
+}
+
+.image-credit {
+    position: absolute;
+    font-size: 0.8em;
+    color: #cccccc; /* Slightly different color for contrast */
+    z-index: 2; /* Ensure text appears above the overlay */
+ }
+
+.banner .mission-statement {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5em;
+    padding: 20px 50px;
+    border-radius: 10px;
+    width: 75vw;
+}
+
+.banner .card {
+    background-color: white !important;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 100px;
+    z-index: 2; /* Ensure text appears above the overlay */
+    display: block; /* Use flexbox for layout */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
+    
+}
+
+.search {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5em;
+    padding: 20px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    height: 120px;
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2; /* Ensure form appears above the overlay */
+    position: relative;
+  }
+
+
+select {
+    display: block;
+  }

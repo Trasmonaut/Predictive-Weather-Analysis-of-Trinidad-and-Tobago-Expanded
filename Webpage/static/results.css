@@ -1,0 +1,31 @@
+.mainresults {
+    padding: 20px;
+    background-color: #082745;
+    color: white;
+    border-radius: 15px;
+    height: 420px;
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+
+.return-to-top {
+    display: block; 
+    text-align: center;
+    color: #082745; 
+    text-decoration: none; 
+    margin: 100px; 
+    font-size: 1.5em; 
+}
+
+.return-to-top:hover {
+    color: #082745; 
+    text-decoration: underline; 
+}
+
+.text {
+margin-bottom: 50px; 
+}

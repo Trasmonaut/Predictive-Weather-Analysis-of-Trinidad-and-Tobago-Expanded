@@ -1,0 +1,23 @@
+# Readme For Weather Model used
+
+"dataCleaner.ipynb" is a cleaner to standardize the data as read from Website according to Lilly's collection/cleaning, to be used for weather prediciton.
+Missing Precipiation data was filled in with the averages to avoid sqewing the data significantly, and to avoid removing null data from set.
+
+"XGBoostWeather-Merged" is the weather model of all the data, when merged and applied togteher
+"XGBoostWeather" is a weather model but for only 1 dataset (degreaded)
+"Merge Clean Files" merges the cleaned dataset into a single Dataset
+
+Data                            Format
+datetime                        day/month/year
+humidity                        humidity out of 100
+windspeed                       wind speed in MPH
+cloudcover                      % of reigion covered by cloud
+visibility                      distance in Miles
+precip mm            precipatiaion in mm for given area
+tempmax c                       max temp for Trinidad and Tobago in C
+tempmin c                       min temp for Trinidad and Tobago in C
+avgtemp c                       avg temp for Trinidad and Tobago in C
+feelslikemax c                  max feels like temp for Trinidad and Tobago in C
+feelslikemin c                  min feels like temp for Trinidad and Tobago in C
+avgteelsliketemp c              avg feels like temp for Trinidad and Tobago in C
+dewpoint c                      dewpoint for Trinidad and Tobago in C
