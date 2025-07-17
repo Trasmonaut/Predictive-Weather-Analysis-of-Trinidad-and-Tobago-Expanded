@@ -83,13 +83,13 @@ def predict():
     target_features = ['cloudcover', 'humidity', 'windspeed','feelslikemax c','tempmax c', 'tempmin c', 
                 'avgtemp c','feelslikemin c', 'avgfeelsliketemp c','dewpoint c', 'precip','visibility']
     # Load the label encoder
-    location_encoder = joblib.load("Models/label_encoder.pkl")
+    location_encoder = joblib.load("Webpage/Models/label_encoder.pkl")
 
     # Load all models from the Models folder into a dictionary
     models = {}
     
     for target in target_features:
-        models[target] = joblib.load(f"Models/{target}_model.pkl")
+        models[target] = joblib.load(f"Webpage/Models/{target}_model.pkl")
         print(f"Loaded model for {target}")
 
     # Load target features
