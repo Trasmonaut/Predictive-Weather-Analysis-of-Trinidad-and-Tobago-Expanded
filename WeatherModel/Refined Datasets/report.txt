@@ -1,0 +1,401 @@
+Report of CSV files found in the directory:
+Processed Arima_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Chaguanas_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Couva-Tabaquite-Talparo_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Crown Point_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Diego Martin_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Penal-Debe_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Point Fortin_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Port Of Spain_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Princes Town_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Rio Claro-Mayaro_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed San Fernando_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed San Juan-Laventille_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Sangre Grande_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Scarborough_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Siparia_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
+Processed Tunapuna-Piarco_weather_data_2000_2025.csv in AllData/VisualCrossing/LocationCsvs
+Missing values report:
+name                  0
+datetime              0
+humidity              0
+precip                0
+windspeed             0
+winddir               0
+sealevelpressure      0
+cloudcover            0
+visibility            0
+solarradiation        0
+solarenergy           0
+sunrise               0
+sunset                0
+precip_chance         0
+tempmax c             0
+tempmin c             0
+avgtemp c             0
+feelslikemax c        0
+feelslikemin c        0
+avgfeelsliketemp c    0
+dewpoint c            0
+dtype: int64
+------------------------------------------------
