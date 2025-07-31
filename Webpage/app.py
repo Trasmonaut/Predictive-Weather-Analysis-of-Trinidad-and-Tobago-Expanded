@@ -80,16 +80,37 @@ def warning_check(prediction_dict):
     
 @app.route('/result', methods=['POST'])
 def predict():
-    target_features = ['cloudcover', 'humidity', 'windspeed','feelslikemax c','tempmax c', 'tempmin c', 
-                'avgtemp c','feelslikemin c', 'avgfeelsliketemp c','dewpoint c', 'precip','visibility']
+    target_features=[
+    'avgtemp c',
+    'tempmax c',
+    'tempmin c',
+    'feelslikemax c',
+    'feelslikemin c',
+    'avgfeelsliketemp c',
+    'humidity',
+    'dewpoint c',
+    'precipcover',
+    'precip',
+    'cloudcover',
+    'sealevelpressure',
+    'solarradiation',
+    'solarenergy',
+    'sunrise',
+    'sunset',
+    'visibility',
+    'windspeed',
+    'winddir'
+]
+
     # Load the label encoder
-    location_encoder = joblib.load("Webpage/Models/label_encoder.pkl")
+ 
+    location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
 
     # Load all models from the Models folder into a dictionary
     models = {}
     
     for target in target_features:
-        models[target] = joblib.load(f"Webpage/Models/{target}_model.pkl")
+        models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
         print(f"Loaded model for {target}")
 
     # Load target features
