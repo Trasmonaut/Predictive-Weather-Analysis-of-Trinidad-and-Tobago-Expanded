@@ -5,6 +5,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -14,7 +15,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -30,6 +30,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -39,7 +40,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -55,6 +55,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -64,7 +65,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -80,6 +80,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -89,7 +90,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -105,6 +105,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -114,7 +115,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -130,6 +130,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -139,7 +140,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -155,6 +155,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -164,7 +165,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -180,6 +180,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -189,7 +190,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -205,6 +205,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -214,7 +215,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -230,6 +230,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -239,7 +240,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -255,6 +255,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -264,7 +265,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -280,6 +280,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -289,7 +290,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -305,6 +305,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -314,7 +315,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -330,6 +330,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -339,7 +340,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -355,6 +355,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -364,7 +365,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
@@ -380,6 +380,7 @@ name                  0
 datetime              0
 humidity              0
 precip                0
+precipcover           0
 windspeed             0
 winddir               0
 sealevelpressure      0
@@ -389,7 +390,6 @@ solarradiation        0
 solarenergy           0
 sunrise               0
 sunset                0
-precip_chance         0
 tempmax c             0
 tempmin c             0
 avgtemp c             0
