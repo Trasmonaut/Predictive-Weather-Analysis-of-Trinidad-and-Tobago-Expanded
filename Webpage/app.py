@@ -103,7 +103,6 @@ def predict():
 ]
 
     # Load the label encoder
- 
     location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
 
     # Load all models from the Models folder into a dictionary
