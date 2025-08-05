@@ -86,7 +86,7 @@ def go_to_result():
     return redirect(url_for('predict', date=date_str, location=location))
    
     
-@app.route('/result/date=<date>/location=<location>', methods=['GET'])
+@app.route('/result/date=<date>&location=<location>', methods=['GET'])
 def predict(date,location):
     target_features=[
         'avgtemp c',
