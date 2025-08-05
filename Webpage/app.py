@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import joblib
 import sklearn
 import pandas as pd
@@ -19,9 +19,9 @@ def TermsAndConditions():
 
 
 
-def prepare_input_from_date(date_str, location_encoded):
+def prepare_input_from_date(date, location_encoded):
     
-    dt = datetime.strptime(date_str, "%d-%m-%Y")
+    dt = datetime.strptime(date, "%d-%m-%Y")
     return pd.DataFrame([{
         'location_encoded': location_encoded,
         'dayofweek': dt.weekday(),
@@ -78,12 +78,16 @@ def warning_check(prediction_dict):
 
     return warnings
 
-
-
+@app.route('/get_result', methods=['GET'])
+def go_to_result():
+    date_str = request.args.get('date')
+    location = request.args.get('location')
+    # redirect to the correct format: /result/date=<date>?location=<location>
+    return redirect(url_for('predict', date=date_str, location=location))
    
     
-@app.route('/result', methods=['POST'])
-def predict():
+@app.route('/result/date=<date>/location=<location>', methods=['GET'])
+def predict(date,location):
     target_features=[
         'avgtemp c',
         'tempmax c',
@@ -116,12 +120,10 @@ def predict():
         models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
         print(f"Loaded model for {target}")
 
-
-    date_str = request.form['date']
-    location_encoded = int(request.form['location'])
+    location_encoded = int(location)
 
     # Prepare the input data
-    input_dataf = prepare_input_from_date(date_str, location_encoded)
+    input_dataf = prepare_input_from_date(date, location_encoded)
     preds = predict_for_date(input_dataf, models, target_features)
     prediction_dict = {target: preds[target][0] for target in target_features}
 
@@ -132,7 +134,7 @@ def predict():
     week_predictions = []
     week_warnings = []
     for i in range(7):
-        dt = datetime.strptime(date_str, "%d-%m-%Y") + pd.DateOffset(days=i)
+        dt = datetime.strptime(date, "%d-%m-%Y") + pd.DateOffset(days=i)
         input_dataf = prepare_input_from_date(dt.strftime("%d-%m-%Y"), location_encoded)
         week_preds = predict_for_date(input_dataf, models, target_features)
         week_prediction_dict = {target: week_preds[target][0] for target in target_features}
@@ -159,7 +161,7 @@ def predict():
         })
 
     location = location_encoder.inverse_transform([int(location_encoded)])[0]
-    return render_template('result.html', location=location, date=date_str, warnings = warnings,predictions = week_predictions  ,
+    return render_template('result.html', location=location, date=date, warnings = warnings,predictions = week_predictions  ,
         cloudcover=prediction_dict.get("cloudcover"),
         precip=prediction_dict.get("precip"),
         humidity=prediction_dict.get("humidity"),
