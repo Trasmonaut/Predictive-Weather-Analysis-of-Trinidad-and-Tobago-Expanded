@@ -13,13 +13,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/moreinfo')
-def moreinfo():
-    return render_template('more-info.html')
+@app.route('/TermsAndConditions')
+def TermsAndConditions():
+    return render_template('TermsAndConditions.html')
 
 
 
 def prepare_input_from_date(date_str, location_encoded):
+    
     dt = datetime.strptime(date_str, "%d-%m-%Y")
     return pd.DataFrame([{
         'location_encoded': location_encoded,
@@ -76,48 +77,48 @@ def warning_check(prediction_dict):
         warnings.append("No Warnings")
 
     return warnings
-    
+
+
+
+   
     
 @app.route('/result', methods=['POST'])
 def predict():
     target_features=[
-    'avgtemp c',
-    'tempmax c',
-    'tempmin c',
-    'feelslikemax c',
-    'feelslikemin c',
-    'avgfeelsliketemp c',
-    'humidity',
-    'dewpoint c',
-    'precipcover',
-    'precip',
-    'cloudcover',
-    'sealevelpressure',
-    'solarradiation',
-    'solarenergy',
-    'sunrise',
-    'sunset',
-    'visibility',
-    'windspeed',
-    'winddir'
-]
-
+        'avgtemp c',
+        'tempmax c',
+        'tempmin c',
+        'feelslikemax c',
+        'feelslikemin c',
+        'avgfeelsliketemp c',
+        'humidity',
+        'dewpoint c',
+        'precipcover',
+        'precip',
+        'cloudcover',
+        'sealevelpressure',
+        'solarradiation',
+        'solarenergy',
+        'sunrise',
+        'sunset',
+        'visibility',
+        'windspeed',
+        'winddir'
+    ]
+    
     # Load the label encoder
     location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
 
-    # Load all models from the Models folder into a dictionary
+        # Load all models from the Models folder into a dictionary
     models = {}
-    
+        
     for target in target_features:
         models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
         print(f"Loaded model for {target}")
 
-    # Load target features
-    
 
     date_str = request.form['date']
     location_encoded = int(request.form['location'])
-
 
     # Prepare the input data
     input_dataf = prepare_input_from_date(date_str, location_encoded)
@@ -170,7 +171,7 @@ def predict():
         feelslikemin=prediction_dict.get("feelslikemin c"),
         avgfeelslike=prediction_dict.get("avgfeelsliketemp c"),
         dewpoint=prediction_dict.get("dewpoint c"),
-        visibility=prediction_dict.get("visibility"))
+        visibility=prediction_dict.get("visibility")),200
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
