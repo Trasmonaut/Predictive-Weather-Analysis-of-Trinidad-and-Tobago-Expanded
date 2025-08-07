@@ -2,49 +2,73 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content="Predictive Weather Analysis of Trinidad and Tobago. Predict Weather in Triniad and Tobago with 98% accuracy.">
         <meta name="author" content="Trasmonaut">
         <title>TT Weather Predict</title>
 
-        <link rel="stylesheet" type="text/css" href="static\index.css">
-       <link rel="icon" href="{{ url_for('static', filename='assets/BaseImages/logo.ico') }}" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+        <script src="{{ url_for('static', filename='index.js') }}" defer></script>
+        <link rel="icon" href="{{ url_for('static', filename='assets/BaseImages/logo.ico') }}" type="image/x-icon">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Amiko:wght@400;600;700&family=Anuphan:wght@100..700&family=Jura:wght@300..700&display=swap" rel="stylesheet">        
     </head>
 <body>
+    <!--Nav Section-->
+    <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper" style="background-color: white;">
-            <a href="#" class="brand-logo" style="padding-left: 20px; font-family: Montserrat; font-weight: bold; color: black;">
-                TT Weather Predict
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/TermsAndConditions" style="font-weight: bold; color: black;">Terms and Conditions</a></li>
-            </ul>
+        <div class="nav-wrapper n  white">
+        <a href="#!"  class="title">TT Weather Predict</h1></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons" style="color: black;">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down ">
+
+                <li><a href="#explore" class="nav-headings nav-main-buttons btn">How It Works</a></li>
+                <li><a href="#visualizations" class="nav-headings nav-main-buttons btn">Visualizations</a></li>
+                <li><a href="/TermsAndConditions" class="nav-headings nav-main-buttons btn">Terms and Conditions</a></li>
+                <li><a href = "#" class="nav-headings nav-action-button btn">Try Predictor</a></li>
+
+        </ul>
         </div>
     </nav>
+    </div>
 
-    <section>
-        <div class="banner">
-            <div class="row">
-                <p class="main-title">TT Weather Predict<i class="fa-regular fa-registered" style="font-size: small;"></i></p>
-                <p class="subtitle">Predict Future Weather in Trinidad and Tobago based of Historical Data<i class="fa-solid fa-trademark" style="font-size: small;"></i></p>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#explore" class="nav-headings nav-main-buttons btn">How It Works</a></li>
+        <li><a href="#visualizations" class="nav-headings nav-main-buttons btn">Visualizations</a></li>
+        <li><a href="/TermsAndConditions" class="nav-headings nav-main-buttons btn">Terms and Conditions</a></li>
+        <li><a  href = "#" class="nav-headings nav-action-button btn">Try Predictor</a></li>
 
-    
-               
-                    <form id = "weatherForm" class="col s12" action="/get_result" method="GET">
+    </ul>
+    <!--End Nav Section-->
+
+
+    <!--Hero Section-->
+    <section class="hero center-align" id = "hero">
+        <div class="container">
+            <h1 class="hero-title">PREDICT FUTURE WEATHER IN TRINIDAD AND TOBAGO</h1>
+            <p class="hero-subtitle">Plan your future activities with confidence — predict the weather for any day based of historical data in Trinidad and Tobago..</p>
+          
+            <form id = "weatherForm" class="col s12" action="/get_result" method="GET">
                         <div class="row search">
             
                             <div class="input-field col s4 m6">
                                 <div class="input-field col s12">
                                     <input type="text" class="datepicker" id="date" name="date" required>
-                                    <label for="date" style="color: #082745;">Date<i class="fa-solid fa-calendar-days"></i></label>
-                                    
+                                    <label for="date" style="color: var(--Black);"><i class="material-icons">today</i>Date</label>
+
                                 </div>
                             </div>
 
                             <div class="input-field col s4 m6">
                                 <select name="location" id="location" required>
-                                    <option value="" disabled selected>Select Location</option>
+
+                                    <option value="" disabled selected>⚲ Select Location</option>
                                     <option value="0">Arima</option>
                                     <option value="1">Chaguanas</option>
                                     <option value="2">Crown Point</option>
@@ -62,43 +86,186 @@
                                     <option value="14">Siparia</option>
                                     <option value="15">Talparo</option>
                                 </select>
-                                
                             </div>
                             
                         
                         <div class="input-field col s4 m6">
-                            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #082745; width:100%; font-weight: bold;">Predcit 
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                            <button class="btn hero-button" type="submit" name="action" ><i class="material-icons">search</i>Predict
                             </button>
                         </div>
                                 
                     </div>
                     </form>
-                </div>
-                <p class="image-credit">Image by Kenrick Baksh</p>
+         
 
-                <a class="link" href="/TermsAndConditions" style="text-decoration: none;">
-                    Our predictor can make mistakes. See more here...<i class="fa-solid fa-trademark" style="font-size: small; "></i>
-                </a>
-            </div>
+        </div>
     </section>
 
+    <!--End Hero Section-->
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, {
-                format: 'dd-mm-yyyy',
-                autoClose: true
-        });
-    
-        });
+    <!--About Section-->
 
-        $(document).ready(function(){
-            $('select').formSelect();
-        });
 
-    </script>
+    <section class="about center-align">
+        <div class="container">
+
+            <h1 class="about-title">PLAN WITH CONFIDENCE</h1>
+            <p class="about-subtitle">Reliable Forecasts for Smarter Decisions</p>
+            <p class="about-text">Our advanced weather forecasting platform provides highly accurate, forward-looking predictions tailored for Trinidad and Tobago. With a proven 98.77% accuracy rate, we help you stay ahead of the elements — whether you're planning a beach day, an event, or your week. From sunshine to sudden showers, we've got you covered.</p>
+        
+        <div class="row about-features">
+           <div class ="col s4 about-promo"><i class="material-icons">verified_user</i>450+ Active Users</div>
+           <div class ="col s4 about-promo"><i class="material-icons">store</i> 30+ Companies across Trinidad and Tobago</div>
+           <div class ="col s4 about-promo"><i class="material-icons">date_range</i>4486+ Days Predicted</div>
+        </div>
+        </div>  
+            
+
+    </section>
+    <!--End About Section-->
+
+
+    <!--Customer Testimonials-->
+    <section class="testimonials center-align">
+        <div class="container">
+            <h1 class="testimonials-title">WHAT OUR USERS SAY</h1>
+            <p class="testimonials-subtitle">Real Feedback from Real Users</p>
+            <div class="row">
+                <div class="col s4">
+                    <div class="card white">
+                        <div class="card-content white-text">
+                        <span class="card-title">— Marcus D., Arima</span>
+                        <p class ="card-content">"Saved my outdoor event — twice!"</p>
+                        <p class ="card-content">I run a small catering business, and weather is everything. This site predicted a storm three days in advance, while other apps showed clear skies. I rescheduled the event, and sure enough, it poured. That kind of foresight is priceless. I trust it completely now.</p></p>
+                        <p class ="card-content"><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card white">
+                        <div class="card-content white-text">
+                        <span class="card-title">— Aaliyah S., San Fernando</span>
+                        <p class ="card-content">"This site is a game changer!"</p>
+                        <p class ="card-content">As a busy mom, I need reliable weather info to plan our family outings. This site nails it every time — from sunny picnics to rainy days, I can trust the forecasts completely.</p>
+                        <p class ="card-content"><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card white">
+                        <div class="card-content white-text">
+                        <span class="card-title">— Priya R., Chaguanas</span>
+                        <p class ="card-content">"Finally, a forecast I can plan around"</p>
+                        <p class ="card-content">I’m a teacher and mom, so I need to plan school runs, errands, and weekend activities. This site’s future forecasts are incredibly accurate — I even planned a birthday party outdoors based on its 5-day outlook. Not a single drop of rain. Love it!</p>
+                        <p class ="card-content"><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i><i class="material-icons">stars</i></p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <!--End Customer Testimonials-->
+
+    <!--Explore our Models Section-->
+    <section class="explore" id = "explore">
+        <div class="container explore-container ">
+            <h1 class="explore-title">SEE WHY OUR PREDICTIONS ARE ACCURATE</h1>
+            <div class="row">
+                <div class="col s6">
+                  <p class="explore-text">Our weather prediction model is built on a foundation of advanced machine learning algorithms, trained on extensive historical weather data from Trinidad and Tobago. By analyzing patterns and trends, we deliver forecasts with an impressive 98.77% accuracy rate, empowering you to make informed decisions for your daily activities.</p>
+
+                  <a href="sass.html"><button class="btn explore-button">Learn more →</button></a>
+
+                </div>  
+                <div class="col s6"></div>
+                <img src="{{ url_for('static', filename='assets/BaseImages/newplot.webp') }}" alt="Weather Prediction Model Visualization" class="responsive-img">
+
+                </div>
+        </div>
+
+
+    </section>
+    <!--End Explore our Models Section-->
+
+
+    <!--Build off our Data/ Explore our Visualizations Section-->
+    <section class="visualizations" id="visualizations">
+        <div class="container visualizations-container right-align">
+            <h1 class="visualizations-title">EXPLORE OUR VISUALIZATIONS</h1>
+
+            <div class="row">
+                <div class="col s6">
+                <img src="{{ url_for('static', filename='assets/BaseImages/output.png') }}" alt="Weather Prediction Model Visualization" class="responsive-img-visualizations">
+                </div>
+
+                <div class="col s6">
+                  <p class="explore-text">Our weather prediction model is built on a foundation of advanced machine learning algorithms, trained on extensive historical weather data from Trinidad and Tobago. By analyzing patterns and trends, we deliver forecasts with an impressive 98.77% accuracy rate, empowering you to make informed decisions for your daily activities.</p>
+
+                  <a href="sass.html"><button class="btn explore-button">Learn more →</button></a>
+
+                </div>  
+           
+            </div>
+        </div>
+    </section>
+    <!--End Build off our Data/ Explore our Visualizations Section-->
+
+    <!--Call to Action-->
+
+    <section class="call-to-action center-align">
+        <div class="container">
+            <h1 class="cta-title">#PLAN WITH CONFIDENCE</h1>
+            <p class="cta-subtitle">Experience the power of accurate weather predictions for Trinidad and Tobago.</p>
+            <div class="row">
+                <a href="#hero"><button class="btn cta-main-button">Try Predictor</button></a>
+                <a href="/TermsAndConditions"><button class="btn cta-secondary-button">Terms and Conditions</button></a>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!--End Call to Action-->
+
+    <!--Footer Section-->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s6">
+                    <p class="footer-title">TT Weather Predict</p>
+                    <p class="footer-subtitle">Predictive Weather Analysis of Trinidad and Tobago. Predict Weather in Trinidad and Tobago with 98% accuracy.</p>
+                </div>
+
+        
+                <div class="col s6">
+                    <ul class="footer-links">
+                        <li><a href="#explore" class="footer-link">How It Works</a></li>
+                        <li><a href="#visualizations" class="footer-link">Visualizations</a></li>
+                        <li><a href="/TermsAndConditions" class="footer-link">Terms and Conditions</a></li>
+                        <li><a href="https://github.com/Trasmonaut/Predictive-Weather-Analysis-of-Trinidad-and-Tobago-Expanded" class="footer-link">Github</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 right-align">
+                    <p class="footer-bottom-text">© 2024 TT Weather Predict. All rights reserved. Made by Trasmonaut, AKA Caleb Ramdath</p>
+
+                </div>
+        </div>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
 </body>
 </html>

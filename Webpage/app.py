@@ -17,6 +17,11 @@ def index():
 def TermsAndConditions():
     return render_template('TermsAndConditions.html')
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 
 
 def prepare_input_from_date(date, location_encoded):

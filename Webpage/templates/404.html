@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Predictive Weather Analysis of Trinidad and Tobago. Predict Weather in Triniad and Tobago with 98% accuracy.">
+        <meta name="author" content="Trasmonaut">
+        <title>TT Weather Predict</title>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='404.css') }}">
+        <script src="{{ url_for('static', filename='index.js') }}" defer></script>
+        <link rel="icon" href="{{ url_for('static', filename='assets/BaseImages/logo.ico') }}" type="image/x-icon">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Amiko:wght@400;600;700&family=Anuphan:wght@100..700&family=Jura:wght@300..700&display=swap" rel="stylesheet">        
+    </head>
+
+<body>
+    <div class="container hide-on-med-and-down center-align">
+        <div class="row ">
+
+                <img src="{{ url_for('static', filename='assets/BaseImages/404.png')}}" class= "rain-image" loading="lazy" alt="404 Not Found">
+
+                <h1 class = "title">ERROR 404!- Page Not Found</h1>
+                <p class = "body"> Seems we ran into an unexpected storm. The page you're looking for might have been moved, deleted, or never existed.Try checking the URL or head back to the homepage to clear the skies.
+
+</p>
+                <a href = "/" class="return-button btn">Return Home</a>
+           
+        </div>
+    </div> 
+    <div class="container hide-on-large-only">
+        <div class="row ">
+           <img src="{{ url_for('static', filename='assets/BaseImages/404.png')}}" class= "rain-image" loading="lazy" alt="404 Not Found">
+
+                <h1 class = "title">ERROR 404!- Page Not Found</h1>
+                <p class = "body">Sorry, Oops! The page you're trying to reach doesn’t exist, might’ve moved, or was never here to begin with. Or mabye Bean had it for a snack. Anyways, heres your ticket out of here.</p>
+                <a href = "/" class="return-button btn">Return Home</a>
+            
+        </div>
+    
+</body>
+</html>

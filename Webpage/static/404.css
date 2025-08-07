@@ -1,0 +1,67 @@
+:root{
+    --LightGray:        #f5f4f4;
+    --DarkGray:         #444444;
+    --white:            #FFFFFF;
+    --Black:            #000000;
+
+    --Accent-Main:      #25AC83;
+    --Accent-Dark:      #1C7C5F;
+    --Accent-Light:     #3EDFAE;
+
+    --Background-Green: #053929;
+    --DarkGreen:       #022a1d;
+
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--white);
+    overflow: none;
+}
+.rain-image{
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+.title{
+    font-family: 'Jura';
+    font-weight: bold;
+    font-size: 48px;
+    color: var(--Black);
+}
+
+.subtitle{
+    font-family: 'Amiko';
+    font-size: 48px;
+    color: var(--Black);
+}
+
+.body{
+    font-family: 'Amiko';
+    font-size: 24px;
+    color: var(--Black);
+}
+
+.return-button {
+    background-color: var(--Accent-Main);
+    width: 200px;
+}
+.return-button:hover {
+    background-color: var(--Accent-Dark);
+    transform: scale(1.05);
+}
+.icon{
+    font-size: 100px;
+    color: var(--Accent-Main);
+}
