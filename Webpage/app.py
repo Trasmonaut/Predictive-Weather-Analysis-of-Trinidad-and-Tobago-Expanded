@@ -21,8 +21,10 @@ def TermsAndConditions():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-
-
+@app.errorhandler(Exception)
+def handle_exception(e):
+    error_message= request.args.get('error_message', str(e))
+    return render_template('error.html', error_message=error_message), 500
 
 def prepare_input_from_date(date, location_encoded):
     
@@ -93,92 +95,96 @@ def go_to_result():
     
 @app.route('/result/date=<date>&location=<location>', methods=['GET'])
 def predict(date,location):
-    target_features=[
-        'avgtemp c',
-        'tempmax c',
-        'tempmin c',
-        'feelslikemax c',
-        'feelslikemin c',
-        'avgfeelsliketemp c',
-        'humidity',
-        'dewpoint c',
-        'precipcover',
-        'precip',
-        'cloudcover',
-        'sealevelpressure',
-        'solarradiation',
-        'solarenergy',
-        'sunrise',
-        'sunset',
-        'visibility',
-        'windspeed',
-        'winddir'
-    ]
+    target_features=['avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
+        'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
+        'solarenergy','sunrise','sunset','visibility','windspeed','winddir']
     
     # Load the label encoder
-    location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
-
+    try:
+        try:
+            location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
+        except Exception as e:
+            error_message = f"Label encoder file not found: {str(e)}"
+            return render_template('error.html', error_message=error_message), 500
         # Load all models from the Models folder into a dictionary
-    models = {}
-        
-    for target in target_features:
-        models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
-        print(f"Loaded model for {target}")
+        try:
+            models = {}
+                
+            for target in target_features:
+                models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
+                print(f"Loaded model for {target}")
+        except Exception as e:
+            error_message = f"Error loading model for {target}: {str(e)}"
+            return render_template('error.html', error_message=error_message), 500
 
-    location_encoded = int(location)
+        try:
+            location_encoded = int(location)
+            # Prepare the input data
+            input_dataf = prepare_input_from_date(date, location_encoded)
+            preds = predict_for_date(input_dataf, models, target_features)
+            prediction_dict = {target: preds[target][0] for target in target_features}
+        except Exception as e:
+            error_message = f"Error during prediction: {str(e)}"
+            return render_template('error.html', error_message=error_message), 500
 
-    # Prepare the input data
-    input_dataf = prepare_input_from_date(date, location_encoded)
-    preds = predict_for_date(input_dataf, models, target_features)
-    prediction_dict = {target: preds[target][0] for target in target_features}
-
-    warnings = ", ".join(warning_check(prediction_dict))
+        warnings = ", ".join(warning_check(prediction_dict))
 
     # Predictions for the week
+        try:
+            week_predictions = []
+            week_warnings = []
+            for i in range(7):
+                dt = datetime.strptime(date, "%d-%m-%Y") + pd.DateOffset(days=i)
+                input_dataf = prepare_input_from_date(dt.strftime("%d-%m-%Y"), location_encoded)
+                week_preds = predict_for_date(input_dataf, models, target_features)
+                week_prediction_dict = {target: week_preds[target][0] for target in target_features}
 
-    week_predictions = []
-    week_warnings = []
-    for i in range(7):
-        dt = datetime.strptime(date, "%d-%m-%Y") + pd.DateOffset(days=i)
-        input_dataf = prepare_input_from_date(dt.strftime("%d-%m-%Y"), location_encoded)
-        week_preds = predict_for_date(input_dataf, models, target_features)
-        week_prediction_dict = {target: week_preds[target][0] for target in target_features}
+
+                warnings = warning_check(week_prediction_dict)
+                week_warnings.append(", ".join(warnings))
+
+                week_predictions.append({
+                    "date": dt.strftime("%d-%m-%Y"),
+                    "cloudcover": week_prediction_dict.get("cloudcover"),
+                    "precip": week_prediction_dict.get("precip"),
+                    "humidity": week_prediction_dict.get("humidity"),
+                    "windspeed": week_prediction_dict.get("windspeed"),
+                    "feelslikemax": week_prediction_dict.get("feelslikemax c"),
+                    "tempmax": week_prediction_dict.get("tempmax c"),
+                    "tempmin": week_prediction_dict.get("tempmin c"),
+                    "avgtemp": week_prediction_dict.get("avgtemp c"),
+                    "feelslikemin": week_prediction_dict.get("feelslikemin c"),
+                    "avgfeelslike": week_prediction_dict.get("avgfeelsliketemp c"),
+                    "dewpoint": week_prediction_dict.get("dewpoint c"),
+                    "visibility": week_prediction_dict.get("visibility"),
+                    "warnings": week_warnings[-1]
+                })
+        except Exception as e:
+            error_message = f"Error during weekly predictions: {str(e)}"
+            return render_template('error.html', error_message=error_message), 500
+        
+
+        location = location_encoder.inverse_transform([int(location_encoded)])[0]
+        return render_template('result.html', location=location, date=date, warnings = warnings,predictions = week_predictions  ,
+            cloudcover=prediction_dict.get("cloudcover"),
+            precip=prediction_dict.get("precip"),
+            humidity=prediction_dict.get("humidity"),
+            windspeed=prediction_dict.get("windspeed"),
+            feelslikemax=prediction_dict.get("feelslikemax c"),
+            tempmax=prediction_dict.get("tempmax c"),
+            tempmin=prediction_dict.get("tempmin c"),
+            avgtemp=prediction_dict.get("avgtemp c"),
+            feelslikemin=prediction_dict.get("feelslikemin c"),
+            avgfeelslike=prediction_dict.get("avgfeelsliketemp c"),
+            dewpoint=prediction_dict.get("dewpoint c"),
+            visibility=prediction_dict.get("visibility"))
 
 
-        warnings = warning_check(week_prediction_dict)
-        week_warnings.append(", ".join(warnings))
 
-        week_predictions.append({
-            "date": dt.strftime("%d-%m-%Y"),
-            "cloudcover": week_prediction_dict.get("cloudcover"),
-            "precip": week_prediction_dict.get("precip"),
-            "humidity": week_prediction_dict.get("humidity"),
-            "windspeed": week_prediction_dict.get("windspeed"),
-            "feelslikemax": week_prediction_dict.get("feelslikemax c"),
-            "tempmax": week_prediction_dict.get("tempmax c"),
-            "tempmin": week_prediction_dict.get("tempmin c"),
-            "avgtemp": week_prediction_dict.get("avgtemp c"),
-            "feelslikemin": week_prediction_dict.get("feelslikemin c"),
-            "avgfeelslike": week_prediction_dict.get("avgfeelsliketemp c"),
-            "dewpoint": week_prediction_dict.get("dewpoint c"),
-            "visibility": week_prediction_dict.get("visibility"),
-            "warnings": week_warnings[-1]
-        })
 
-    location = location_encoder.inverse_transform([int(location_encoded)])[0]
-    return render_template('result.html', location=location, date=date, warnings = warnings,predictions = week_predictions  ,
-        cloudcover=prediction_dict.get("cloudcover"),
-        precip=prediction_dict.get("precip"),
-        humidity=prediction_dict.get("humidity"),
-        windspeed=prediction_dict.get("windspeed"),
-        feelslikemax=prediction_dict.get("feelslikemax c"),
-        tempmax=prediction_dict.get("tempmax c"),
-        tempmin=prediction_dict.get("tempmin c"),
-        avgtemp=prediction_dict.get("avgtemp c"),
-        feelslikemin=prediction_dict.get("feelslikemin c"),
-        avgfeelslike=prediction_dict.get("avgfeelsliketemp c"),
-        dewpoint=prediction_dict.get("dewpoint c"),
-        visibility=prediction_dict.get("visibility")),200
+    except Exception as e:
+        error_message = f"Error during result rendering: {str(e)}"
+        return render_template('error.html', error_message=error_message), 500
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
