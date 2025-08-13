@@ -406,3 +406,10 @@ body,html{
     justify-content: center;
     padding: 0px 20px 0px 20px;
 }
+
+.error{
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--white);
+    text-align: center;
+}

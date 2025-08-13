@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, get_flashed_messages, flash
 import joblib
 import sklearn
 import pandas as pd
@@ -7,6 +7,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
+app.secret_key="Paul_taylor"
 
 
 @app.route('/')
@@ -85,16 +86,43 @@ def warning_check(prediction_dict):
 
     return warnings
 
+def validate_inputs(date_str, location):
+    # Check if date_str is provided and matches dd-mm-yyyy format
+    if not date_str:
+        return False
+    try:
+        datetime.strptime(date_str, "%d-%m-%Y")
+    except ValueError:
+        return False
+
+    # Validate location
+    if not location or not location.isdigit():
+        return False
+    location_int = int(location)
+    if location_int < 0 or location_int > 15:
+        return False
+
+    return True
+   
+
 @app.route('/get_result', methods=['GET'])
 def go_to_result():
     date_str = request.args.get('date')
+   
     location = request.args.get('location')
-    # redirect to the correct format: /result/date=<date>?location=<location>
+
+    # redirect to the correct format: /result/date=<date>?location=<location> only if valid date
     return redirect(url_for('predict', date=date_str, location=location))
    
     
 @app.route('/result/date=<date>&location=<location>', methods=['GET'])
 def predict(date,location):
+
+    if validate_inputs(date, location) is not True:
+        error_message = "Invalid inputs. Please ensure the date is in the format dd-mm-yyyy and location is a valid number."
+        flash(error_message)
+        return redirect(url_for('index'))
+
     target_features=['avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
         'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
         'solarenergy','sunrise','sunset','visibility','windspeed','winddir']

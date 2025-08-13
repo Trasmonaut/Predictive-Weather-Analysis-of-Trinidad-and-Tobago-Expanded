@@ -20,6 +20,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Amiko:wght@400;600;700&family=Anuphan:wght@100..700&family=Jura:wght@300..700&display=swap" rel="stylesheet">        
     </head>
 <body>
+   
+
     <!--Nav Section-->
     <div class="navbar-fixed">
     <nav>
@@ -46,7 +48,17 @@
 
     </ul>
     <!--End Nav Section-->
-
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="container">
+      {% for message in messages %}
+        <div class="card-panel red lighten-2 white-text error" style="margin-top: 20px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
     <!--Hero Section-->
     <section class="hero center-align" id = "hero">
