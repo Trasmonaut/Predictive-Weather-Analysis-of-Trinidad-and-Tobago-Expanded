@@ -21,25 +21,6 @@
 
         <title>TT Weather Predict</title>
    
-        <style>
-            .return-to-top {
-                display: block; 
-                text-align: center;
-                color: #082745; 
-                text-decoration: none; 
-                margin: 100px; 
-                font-size: 1.5em; 
-            }
-
-            .return-to-top:hover {
-                color: #082745; 
-                text-decoration: underline; 
-            }
-
-            .text {
-    margin-bottom: 50px; 
-}
-        </style>
     </head>
 <body>
     <!--Nav Section-->
@@ -69,53 +50,77 @@
     </ul>
     </div>
     <!--End Nav Section-->
-   
+    <section class ="about">
 
+        <div class="row">
+        <h1 class="about-title">TERMS AND CONDITIONS<h1>
+        <p class="about-content">Please read these terms and conditions carefully before using our weather prediction service.</p>
+
+        </div>
+    </section>
     <section>
-        <h1 class="main-title" style="text-align: center; font-family: Montserrat; font-weight: bold; color: #082745;">Terms and Conditions</h1>
+        <div class = "container terms-white">
+            <h2 class="term-title">1. Prediction Accuracy:</h2>
+            <p class="term-content">Our predictor may produce inaccurate or incomplete data. Please consult authoritative and official sources for critical or time-sensitive dates. Predictions are based on statistical models and may not account for sudden or unexpected weather events. Exercise caution when planning significant activities based solely on our forecasts.</p>
+        </div>
 
 
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">1. Prediction Accuracy:</h3>
-         <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">Our predictor may produce inaccurate or incomplete data. Please consult authoritative and official sources for critical or time-sensitive dates. Predictions are based on statistical models and may not account for sudden or unexpected weather events. Exercise caution when planning significant activities based solely on our forecasts.</p>
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">2. Data Collection and Usage:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">We do not actively measure or collect data in real-time. Our predictions rely solely upon historical data, and as such, they may not reflect current or future conditions accurately. Data used in predictions may also include synthetic or extrapolated datasets to fill in missing information.</p>
+        <div class="container terms-white">
+            <h2 class="term-title">2. Data Collection and Usage:</h2>
+            <p class="term-content">We do not actively measure or collect data in real-time. Our predictions rely solely upon historical data, and as such, they may not reflect current or future conditions accurately. Data used in predictions may also include synthetic or extrapolated datasets to fill in missing information.</p>
+        </div>
 
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">3. Time Series Limitations:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">Time series predictions become increasingly uncertain as the prediction timeframe extends further into the future. Our data is only accurate up to 14th May 2025, and any predictions beyond this date should be treated with caution. The reliability of predictions may decrease rapidly for dates further in the future, especially during volatile weather seasons.</p>   
+
+        <div class="container terms-white">
+            <h2 class="term-title">3. Time Series Limitations:</h2>
+            <p class="term-content">Time series predictions become increasingly uncertain as the prediction timeframe extends further into the future. Our data is only accurate up to 14th May 2025, and any predictions beyond this date should be treated with caution. The reliability of predictions may decrease rapidly for dates further in the future, especially during volatile weather seasons.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">4. Data Sources and Verification:</h2>
+            <p class="term-content">All data utilized in our predictions is sourced from publicly available historical records. We do not guarantee the accuracy, completeness, or timeliness of data provided by third-party sources. Users should verify data with local meteorological agencies to ensure comprehensive and current information.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">5. Intended Use:</h2>
+            <p class="term-content">This service is designed for informational purposes only and should not be used as the sole basis for critical decision-making, especially in areas such as emergency planning, travel arrangements, or property management. Always cross-reference our predictions with official weather services to mitigate risks associated with potential inaccuracies.</p>
+        </div>
+
+        <div class="container terms-white"> 
+            <h2 class="term-title">6. Limitation of Liability:</h2>
+            <p class="term-content">TT Weather Predict is not responsible for any financial losses, damages, or inconveniences arising from the use of predictions provided by this service. Users are encouraged to verify all predictions with trusted weather authorities. We disclaim liability for any actions taken based on data provided by our system, particularly in scenarios involving potential harm or risk.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">7. Data Retention and Updates:</h2>
+            <p class="term-content">Data used in predictions is retained only for the duration necessary to provide forecasting services and may not be updated regularly. Users should consult official sources for the most current information. Additionally, data may be archived for analytical purposes, but it is not actively monitored for ongoing accuracy.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">8. Severe Weather Events:</h2>
+            <p class =  "term-content">Our system is not designed to predict extreme weather events such as hurricanes, tropical storms, or earthquakes. These phenomena are complex and require specialized data and forecasting models beyond the scope of our service. Users should refer to official meteorological and geological authorities for accurate and timely warnings regarding such events. TT Weather Predict disclaims any liability for damages, injuries, or losses resulting from reliance on our predictions in the context of severe or catastrophic weather conditions.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">9. User Agreement:</h2>
+            <p class =  "term-content">By using this service, you acknowledge and agree that the predictions are based on historical data and are inherently limited in accuracy. You accept all risks associated with relying on these predictions. Continued use of our services indicates acceptance of these terms, including the understanding that the predictions are not definitive and may be subject to revision without notice.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">10. Data Science Model – XGBoost:</h2>
+            <p class =  "term-content">The predictions provided by TT Weather Predict are powered by the XGBoost algorithm, a popular and robust machine learning model known for its accuracy and efficiency in handling large datasets. XGBoost is a gradient-boosting framework that combines the strengths of multiple decision trees to improve prediction performance. It is highly effective at handling nonlinear relationships and can efficiently process time-series data, making it suitable for predicting weather patterns based on historical records. While XGBoost enhances the accuracy of predictions, it is still limited by the availability and quality of input data, and users are encouraged to consider this when making decisions based on our forecasts.</p>
+        </div>
+
+        <div class="container terms-white">
+            <h2 class="term-title">11. Developed by:</h2>
+            <p class =  "term-content">This app was orignally developed by Lillian Charles, Caleb Ramdath, and Jordhan Courteu as part of our Big Data course project. Caleb Ramdath took this project and rebuilt it from the ground up, and that is what youre seeing here.The goal of this project is to explore and apply machine learning models, such as XGBoost, in real-world scenarios to predict weather patterns and improve data-driven decision-making. The team has worked diligently to build a user-friendly interface and robust backend system to deliver weather predictions based on historical data, ensuring a valuable learning experience for all involved. Any feedback on the app's functionality or performance is greatly appreciated as we continue to improve our model.</p>
+
+        </div>
+
+        <div class="container center return-button">
+            <a href="/"><button class="btn cta-main-button">Try Predictor</button></a>
+        </div>
         
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">4. Data Sources and Verification:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">All data utilized in our predictions is sourced from publicly available historical records. We do not guarantee the accuracy, completeness, or timeliness of data provided by third-party sources. Users should verify data with local meteorological agencies to ensure comprehensive and current information.</p>
-   
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">5. Intended Use:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">TThis service is designed for informational purposes only and should not be used as the sole basis for critical decision-making, especially in areas such as emergency planning, travel arrangements, or property management. Always cross-reference our predictions with official weather services to mitigate risks associated with potential inaccuracies.</p>
-    
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">6. Limitation of Liability:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">TT Weather Predict is not responsible for any financial losses, damages, or inconveniences arising from the use of predictions provided by this service. Users are encouraged to verify all predictions with trusted weather authorities. We disclaim liability for any actions taken based on data provided by our system, particularly in scenarios involving potential harm or risk.</p>
-    
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">7. Data Retention and Updates:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">Data used in predictions is retained only for the duration necessary to provide forecasting services and may not be updated regularly. Users should consult official sources for the most current information. Additionally, data may be archived for analytical purposes, but it is not actively monitored for ongoing accuracy.
-
-        </p>
-
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">8. Severe Weather Events:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">Our system is not designed to predict extreme weather events such as hurricanes, tropical storms, or earthquakes. These phenomena are complex and require specialized data and forecasting models beyond the scope of our service. Users should refer to official meteorological and geological authorities for accurate and timely warnings regarding such events. TT Weather Predict disclaims any liability for damages, injuries, or losses resulting from reliance on our predictions in the context of severe or catastrophic weather conditions.</p>
-    
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">9. User Agreement:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">By using this service, you acknowledge and agree that the predictions are based on historical data and are inherently limited in accuracy. You accept all risks associated with relying on these predictions. Continued use of our services indicates acceptance of these terms, including the understanding that the predictions are not definitive and may be subject to revision without notice.</p>
-
-
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">10. Data Science Model – XGBoost:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">The predictions provided by TT Weather Predict are powered by the XGBoost algorithm, a popular and robust machine learning model known for its accuracy and efficiency in handling large datasets. XGBoost is a gradient-boosting framework that combines the strengths of multiple decision trees to improve prediction performance. It is highly effective at handling nonlinear relationships and can efficiently process time-series data, making it suitable for predicting weather patterns based on historical records. While XGBoost enhances the accuracy of predictions, it is still limited by the availability and quality of input data, and users are encouraged to consider this when making decisions based on our forecasts.</p>
-        
-        <h3 class="subtitle" style="padding-left: 200px;font-family: Montserrat; font-weight: bold; color: #082745;">11. Developed by:</h3>
-        <p class =  "text" style="padding-left: 200px;padding-right: 200px;font-family: Montserrat; font-weight: bold; color: #000000;">This app was orignally developed by Lillian Charles, Caleb Ramdath, and Jordhan Courteu as part of our Big Data course project. Caleb Ramdath took this project and rebuilt it from the ground up, and that is what youre seeing here.The goal of this project is to explore and apply machine learning models, such as XGBoost, in real-world scenarios to predict weather patterns and improve data-driven decision-making. The team has worked diligently to build a user-friendly interface and robust backend system to deliver weather predictions based on historical data, ensuring a valuable learning experience for all involved. Any feedback on the app's functionality or performance is greatly appreciated as we continue to improve our model.</p>
-        
-        <h6 class="subtitle" style="text-align: center;font-family: Montserrat; font-weight: bold; color: #082745;">Github Repo</h6>
-        <p class =  "text" style="text-align: center;font-family: Montserrat; font-weight: bold; color: #000000;">https://github.com/Trasmonaut/Predictive-Weather-Analysis-of-Trinidad-and-Tobago-Expanded</p>
-
-        <a href="#" class="return-to-top">
-            Return to top
-        </a>
     </section>  
 
     <!--Footer Section-->
