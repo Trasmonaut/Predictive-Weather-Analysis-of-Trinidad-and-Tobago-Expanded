@@ -28,7 +28,6 @@ def handle_exception(e):
     return render_template('error.html', error_message=error_message), 500
 
 def prepare_input_from_date(date, location_encoded):
-    
     dt = datetime.strptime(date, "%d-%m-%Y")
     return pd.DataFrame([{
         'location_encoded': location_encoded,
