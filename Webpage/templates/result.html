@@ -24,15 +24,7 @@
 
 <body>
 
-    {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+    
     <!--Nav Section-->
     <div class="navbar-fixed">
     <nav>
@@ -69,53 +61,52 @@
         <div class="row mainresults">
             <div class="col s6">
                 <p> Max Temperature:</p>
-                <h1>{{ tempmax | round(1) }}°C</h1>
+                <h1>{{ predictions[0].tempmax | round(1) }}°C</h1>
 
                 <div class = "col s6">
                     <p> Averge Temperature:</p>
-                    <h1>{{avgtemp | round(1)}}°C</h1>
+                    <h1>{{ predictions[0].avgtemp | round(1) }}°C</h1>
                 </div>  
                 <div class = "col s6">
                     <p> Min Temperature:</p>
-                    <h1>{{tempmin | round(1)}} °C</h1>
+                    <h1>{{ predictions[0].tempmin | round(1) }} °C</h1>
                 </div>  
 
             </div>
 
             <div class="col s6" style="text-align: center;">
                 <div class = "col s4">
-                    <h6> Relative Max Temperature: {{feelslikemax |round(1)}}°C </h6>
+                    <h6> Relative Max Temperature: {{ predictions[0].feelslikemax | round(1) }}°C </h6>
                 </div>
                 <div class = "col s4">
-                    <h6> Relative Average Temperature: {{avgfeelslike | round(1 )}} °C</h6>
+                    <h6> Relative Average Temperature: {{ predictions[0].avgfeelslike | round(1) }} °C</h6>
                 </div>
                 <div class = "col s4">
-                    <h6> Relative Min Temperature: {{feelslikemin | round (1)}} °C</h6>
+                    <h6> Relative Min Temperature: {{ predictions[0].feelslikemin | round(1) }} °C</h6>
                 </div>
 
                 <div class = "col s6">
-                    <h6> Humidity: {{humidity | int}} %</h6>
+                    <h6> Humidity: {{ predictions[0].humidity | int }} %</h6>
                 </div>
                 <div class = "col s6">
-                    <h6> Wind Speed: {{windspeed | int}} mph</h6>
+                    <h6> Wind Speed: {{ predictions[0].windspeed | int }} mph</h6>
                 </div>
                 <div class = "col s6">
-                    <h6> Cloud Cover:  {{cloudcover |int}} %</h6>
+                    <h6> Cloud Cover:  {{ predictions[0].cloudcover | int }} %</h6>
                 </div>
                 <div class = "col s6">
-                    <h6> Rainfall: {{precip | round(3) }} mm</h6>
+                    <h6> Rainfall: {{ predictions[0].precip | round(3) }} mm</h6>
                 </div>
                 <div class = "col s6">
-                    <h6> Dew Point: {{dewpoint |round(1)}} °C</h6>
+                    <h6> Dew Point: {{ predictions[0].dewpoint | round(1) }} °C</h6>
                 </div>
                 <div class = "col s6">
-                    <h6> Visibility: {{visibility | round(1)}} miles</h6>
+                    <h6> Visibility: {{ predictions[0].visibility | round(1) }} miles</h6>
                 </div>
 
                 <div class = "col s12">
-                    <h3>Possible Hazzrds</h3>
-                    <h6> {{warnings}} </h6>
-                    
+                    <h3>Possible Hazards</h3>
+                    <h6> {{ warnings }} </h6>
 
             
                 </div>

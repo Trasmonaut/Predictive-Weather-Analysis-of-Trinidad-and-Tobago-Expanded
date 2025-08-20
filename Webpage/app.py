@@ -127,6 +127,8 @@ def predict(date,location):
         'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
         'solarenergy','sunrise','sunset','visibility','windspeed','winddir']
     
+    
+    
     # Load the label encoder
     try:
         try:
@@ -145,20 +147,15 @@ def predict(date,location):
             error_message = f"Error loading model for {target}: {str(e)}"
             return render_template('error.html', error_message=error_message), 500
 
+       
+           
         try:
             location_encoded = int(location)
             # Prepare the input data
+            
             input_dataf = prepare_input_from_date(date, location_encoded)
-            preds = predict_for_date(input_dataf, models, target_features)
-            prediction_dict = {target: preds[target][0] for target in target_features}
-        except Exception as e:
-            error_message = f"Error during prediction: {str(e)}"
-            return render_template('error.html', error_message=error_message), 500
-
-        warnings = ", ".join(warning_check(prediction_dict))
-
-    # Predictions for the week
-        try:
+           
+            # Predictions for the week
             week_predictions = []
             week_warnings = []
             for i in range(7):
@@ -187,28 +184,27 @@ def predict(date,location):
                     "visibility": week_prediction_dict.get("visibility"),
                     "warnings": week_warnings[-1]
                 })
+
+                # only keep the first warning
+            warnings = week_warnings[0]
+
+
         except Exception as e:
             error_message = f"Error during weekly predictions: {str(e)}"
             return render_template('error.html', error_message=error_message), 500
         
 
+        #unload models when prediction is made
+        for target in target_features:
+            del models[target]
+            print(f"Unloaded model for {target}")
+
+        #convert location back to original
+
         location = location_encoder.inverse_transform([int(location_encoded)])[0]
-        return render_template('result.html', location=location, date=date, warnings = warnings,predictions = week_predictions  ,
-            cloudcover=prediction_dict.get("cloudcover"),
-            precip=prediction_dict.get("precip"),
-            humidity=prediction_dict.get("humidity"),
-            windspeed=prediction_dict.get("windspeed"),
-            feelslikemax=prediction_dict.get("feelslikemax c"),
-            tempmax=prediction_dict.get("tempmax c"),
-            tempmin=prediction_dict.get("tempmin c"),
-            avgtemp=prediction_dict.get("avgtemp c"),
-            feelslikemin=prediction_dict.get("feelslikemin c"),
-            avgfeelslike=prediction_dict.get("avgfeelsliketemp c"),
-            dewpoint=prediction_dict.get("dewpoint c"),
-            visibility=prediction_dict.get("visibility"))
 
 
-
+        return render_template('result.html', location=location, date=date, warnings = warnings,predictions = week_predictions), 200
 
     except Exception as e:
         error_message = f"Error during result rendering: {str(e)}"
