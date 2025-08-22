@@ -171,7 +171,7 @@
 
 
 .cta-main-button{
-    background-color: var(--Background-Green);
+    background-color: var(--Accent-Main);
     
     font-weight: bold;
     color: var(--white);
@@ -184,7 +184,7 @@
 }
 
 .cta-main-button:hover{
-    background-color: var(--Background-Green);
+    background-color: var(--Accent-Main);
     box-shadow: none;
     transform: scale(1.05);
 }

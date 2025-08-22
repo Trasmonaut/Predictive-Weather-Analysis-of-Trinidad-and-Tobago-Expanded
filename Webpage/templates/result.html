@@ -1,57 +1,11 @@
-<!doctype html>
-<html lang="en">
-    <head>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{% extends "layout.html" %}
 
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="description" content="Predictive Weather Analysis of Trinidad and Tobago. Predict Weather in Triniad and Tobago with 98% accuracy.">
-        <meta name="author" content="Trasmonaut">
-        <title>TT Weather Predict</title>
+{% block styles %}
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='results.css') }}">
+{% endblock %}
 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='results.css') }}">
-        <script src="{{ url_for('static', filename='index.js') }}" defer></script>
-        <link rel="icon" href="{{ url_for('static', filename='assets/BaseImages/logo.ico') }}" type="image/x-icon">
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Amiko:wght@400;600;700&family=Anuphan:wght@100..700&family=Jura:wght@300..700&display=swap" rel="stylesheet">        
-
-        <title>TT Weather Predict</title>
-    </head>
-
-<body>
-
-    
-    <!--Nav Section-->
-    <div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper n  white">
-        <a href="/"  class="title">TT Weather Predict</h1></a>
-        <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons" style="color: black;">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down ">
-
-                <li><a href="/#explore" class="nav-headings nav-main-buttons btn">How It Works</a></li>
-                <li><a href="/#visualizations" class="nav-headings nav-main-buttons btn">Visualizations</a></li>
-                <li><a href="/TermsAndConditions" class="nav-headings nav-main-buttons btn">Terms and Conditions</a></li>
-                <li><a href = "/" class="nav-headings nav-action-button btn">Try Predictor</a></li>
-
-        </ul>
-        </div>
-    </nav>
-    </div>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="/#explore" class="nav-headings nav-main-buttons btn">How It Works</a></li>
-        <li><a href="/#visualizations" class="nav-headings nav-main-buttons btn">Visualizations</a></li>
-        <li><a href="/TermsAndConditions" class="nav-headings nav-main-buttons btn">Terms and Conditions</a></li>
-        <li><a  href = "/" class="nav-headings nav-action-button btn">Try Predictor</a></li>
-
-    </ul>
-    <!--End Nav Section-->
-    </div>
+{% block content %}
     <section class ="title">
     <h2 class="main-title" style="text-align: center; font-family: Montserrat; font-weight: bold; color: #082745;">{{ date }} - {{ location }} Prediction Result</h2>
 
@@ -115,23 +69,27 @@
         </div>
     </section>
 
-    <section class="results">
-        <h4 class="subtitle" style="text-align: center;font-family: Montserrat; font-weight: bold; color: #082745;">Predicted Weather for the next 7 days after {{date}} in {{location  }} </h4>
+    <section class="results center-align">
         
-        <table class="highlight centered" >
-            <thead>
-              <tr>
-                  <th>Date</th>
-                  <th>Max Temp</th>
-                  <th>Average Temp</th>
-                  <th>Min Temp</th>
-                  <th>Humidity</th>
-                  <th>Wind Speed</th>
-                  <th>Cloud Cover</th>
-                  <th>Rainfall</th>
-                  <th>Dew Point</th>
-                  <th>Visibility</th>
-                  <th>Possible Hazards</th>
+
+            <h1 class="results-title">7- DAY WEATHER FORCAST</h1>
+            <table class="highlight centered responsive-table   " >
+                <thead>
+                  <tr>
+                 <th class="table-header">Date</th>
+                  <th class="table-header">Max Temp</th>
+                  <th class="table-header">Average Temp</th>
+                  <th class="table-header">Min Temp</th>
+                  <th class="table-header">Humidity</th>
+                  <th class="table-header">Wind Speed</th>
+                  <th class="table-header">Cloud Cover</th>
+                  <th class="table-header">Rainfall</th>
+                  <th class="table-header">Precipitation Cover</th>
+                  <th class="table-header">Dew Point</th>
+                  <th class="table-header">Visibility</th>
+                  <th class="table-header">Sunrise am</th>
+                  <th class="table-header">Sunset pm</th>
+                  <th class="table-header">Possible Hazards</th>
 
               </tr>
             </thead>
@@ -139,100 +97,72 @@
             <tbody>
                 {% for prediction in predictions %}
                 <tr>
-                    <td>{{ prediction.date }}</td>
-                    <td>{{ prediction.tempmax | round(1) }}°C</td>
-                    <td>{{ prediction.avgtemp | round(1) }}°C</td>
-                    <td>{{ prediction.tempmin | round(1) }}°C</td>
-                    <td>{{ prediction.humidity | int }}%</td>
-                    <td>{{ prediction.windspeed | int }} mph</td>
-                    <td>{{ prediction.cloudcover | int }}%</td>
-                    <td>{{ prediction.precip | round(3) }} mm</td>
-                    <td>{{ prediction.dewpoint | round(1) }}°C</td>
-                    <td>{{ prediction.visibility | round(1) }} miles</td>
-                    <td>{{ prediction.warnings }}</td>
+                    <td class="table-content">{{ prediction.date }}</td>
+                    <td class="table-content">{{ prediction.tempmax | round(1) }}°C</td>
+                    <td class="table-content">{{ prediction.avgtemp | round(1) }}°C</td>
+                    <td class="table-content">{{ prediction.tempmin | round(1) }}°C</td>
+                    <td class="table-content">{{ prediction.humidity | int }}%</td>
+                    <td class="table-content">{{ prediction.windspeed | int }} mph</td>
+                    <td class="table-content">{{ prediction.cloudcover | int }}%</td>
+                    <td class="table-content">{{ prediction.precip | round(3) }} mm</td>
+                    <td class ="table-content">{{ prediction.precipcover | default(0) | round(1) }}%</td>
+                    <td class="table-content">{{ prediction.dewpoint | round(1) }}°C</td>
+                    <td class="table-content">{{ prediction.visibility | round(1) }} miles</td>
+                    <td class="table-content">{{ prediction.sunrise }}</td>
+                    <td class="table-content">{{ prediction.sunset }}</td>
+                    <td class="table-content">{{ prediction.warnings }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
           </table>
-                
+
+      
     </section>  
-    <section>
 
-        <img src="{{ url_for('static', filename='/assets/BaseImages/map.png') }}" alt="Trinidad And Tobago divided by regions" class="weather-image" style="width: 700px; height: 616px; display: block; margin: 0 auto;padding-top: 100px;">
 
+    <section class = "Warnings">
+
+    <div class="center-align Warnings-explain">
         <div class = "col s12">
-            <h4 class="subtitle" style="text-align: center;font-family: Montserrat; font-weight: bold; color: #082745;"> Weather warning Explained </h4>
+             <h1 class="warning-title">WEATHER WARNINGS EXPLAINED</h1>
         </div>
-         <table class="centered">
-            <thead>
+         <table class="responsive-table centered highlight">
+            <thead> 
               <tr>
-                  <th>Warning</th>
-                  <th>Relative Heat</th>
-                  <th>Wind</th>
-                  <th>Flooding</th>
+                  <th class="table-header">WARNING</th>
+                  <th class="table-header">HEAT</th>
+                  <th class="table-header">WIND</th>
+                  <th class="table-header">FLOODING</th>
               </tr>
             </thead>
     
             <tbody>
               <tr>
-                <td>Advisory</td>
-                <td>>30°C</td>
-                <td>>10 mph</td>
-                <td>>50 mm</td>
+                <td class="table-content">Advisory</td>
+                <td class="table-content">>30°C</td>
+                <td class="table-content">>10 mph</td>
+                <td class="table-content">>5 mm</td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>>35°C</td>
-                <td>>15 mph</td>
-                <td>>100 mm</td>
+                <td class="table-content">Warning</td>
+                <td class="table-content">>35°C</td>
+                <td class="table-content">>15 mph</td>
+                <td class="table-content">>10 mm</td>
               </tr>
               <tr>
-                <td>Severe</td>
-                <td>>40°C</td>
-                <td>>20 mph</td>
-                <td>>200 mm</td>
+                <td class="table-content">Severe</td>
+                <td class="table-content">>40°C</td>
+                <td class="table-content">>20 mph</td>
+                <td class="table-content">>20 mm</td>
               </tr>
             </tbody>
           </table>
                 
 
-    <a href="/" class="return-to-top">
-        Return to Predictor
-    </a>
-    </section>
-
-    <!--Footer Section-->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col s6">
-                    <p class="footer-title">TT Weather Predict</p>
-                    <p class="footer-subtitle">Predictive Weather Analysis of Trinidad and Tobago. Predict Weather in Trinidad and Tobago with 98% accuracy.</p>
-                </div>
-
-        
-                <div class="col s6">
-                    <ul class="footer-links">
-                        <li><a href="#explore" class="footer-link">How It Works</a></li>
-                        <li><a href="#visualizations" class="footer-link">Visualizations</a></li>
-                        <li><a href="/TermsAndConditions" class="footer-link">Terms and Conditions</a></li>
-                        <li><a href="https://tally.so/r/wbJANe" class="footer-link">Contact</a></li>
-                        <li><a href="https://github.com/Trasmonaut/Predictive-Weather-Analysis-of-Trinidad-and-Tobago-Expanded" class="footer-link">Github</a></li>
-                    </ul>
-
-                </div>
+    </div>
+            <div class="container center return-button">
+                <a href="/"><button class="btn cta-main-button">Predict Another Date</button></a>
             </div>
-            <div class="row">
-                <div class="col s12 right-align">
-                    <p class="footer-bottom-text">© 2024 TT Weather Predict. All rights reserved. Made by Trasmonaut, AKA Caleb Ramdath</p>
+     </section>
 
-                </div>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
-</body>
-</html>
+{% endblock %}
