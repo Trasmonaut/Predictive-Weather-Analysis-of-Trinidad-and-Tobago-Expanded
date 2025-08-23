@@ -67,6 +67,12 @@
 
             </div>
         </div>
+
+        <div class="col s12">
+            <h3>Weather Descriptions</h3>
+            <h6>Short Description: {{ short_descriptions }}</h6>
+            <h6>Long Description: {{ descriptions }} {{ warnings }}</h6>
+        </div>
     </section>
 
     <section class="results center-align">
@@ -130,7 +136,7 @@
             <thead> 
               <tr>
                   <th class="table-header">WARNING</th>
-                  <th class="table-header">HEAT</th>
+                  <th class="table-header">RELATIVE HEAT</th>
                   <th class="table-header">WIND</th>
                   <th class="table-header">FLOODING</th>
               </tr>

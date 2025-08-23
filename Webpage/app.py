@@ -49,7 +49,71 @@ def predict_for_date(input_df, models, target_order):
 
     return preds
 
+def descriptions(prediction_dict):
+    long_description = []
+
+    temp = prediction_dict.get("feelslikemax c", 0)
+    humidity = prediction_dict.get("humidity", 0)
+    cloudcover = prediction_dict.get("cloudcover", 0)
+    precipcover = prediction_dict.get("precipcover", 0)
+    rainfall = prediction_dict.get("precip", 0)
+    windspeed = prediction_dict.get("windspeed", 0)
+
+    # --- RAIN PRIORITY ---
+    if precipcover >= 70 and rainfall >= 10:
+        shortdescription=  "Heavy widespread rainfall"
+        long_description.extend("Expect heavy rainfall across the region.")
+    if precipcover >= 50 and rainfall >= 5:
+        shortdescription=  "Widespread rain expected"
+        long_description.append("Widespread rain is anticipated across large regions of this area.")
+    if precipcover >= 50 and rainfall < 5:
+        shortdescription=  "Scattered light showers"
+        long_description.append("Light showers are possible throughout the day.")
+    if precipcover < 50 and rainfall >= 5:
+        shortdescription=  "Isolated showers expected"
+        long_description.append("Isolated showers are expected in some areas.")
+    if precipcover < 50 and rainfall < 5 and rainfall > 0:
+        shortdescription=  "Light rain possible"
+        long_description.append("Light rain is possible, but amounts are expected to be minimal.")
+
+    # --- HEAT PRIORITY ---
+    if temp >= 35 and humidity >= 70:
+        shortdescription=  "Dangerously hot conditions"
+        long_description.append("Extreme heat combined with high humidity may lead to heat-related illnesses. Stay hydrated and avoid strenuous outdoor activities.")
+    if temp >= 30:
+        shortdescription=  "Generally hot weather"
+        long_description.append("Generally hot weather is expected. Stay hydrated and avoid strenuous outdoor activities.")
+
+    if humidity >= 75:
+        shortdescription=  "Oppressive humidity"
+        long_description.append("High humidity levels may cause discomfort. Take precautions to stay cool.")
+
+
+    # --- CLOUD PRIORITY ---
+    if cloudcover >= 70:
+        shortdescription=  "Overcast cloudy skies"
+        long_description.append("Expect overcast conditions with limited sunshine throughout the day.")
+    if cloudcover < 40:
+        shortdescription=  "Partly cloudy skies"
+        long_description.append("Partly cloudy skies are expected throughout the day.")
+    if cloudcover < 20:
+        shortdescription=  "Mostly sunny skies"
+        long_description.append("Mostly sunny skies are expected throughout the day.")
+
+    # --- WIND CHECK (optional but important) ---
+    if windspeed >= 30:
+        shortdescription=  "Strong windy conditions"
+        long_description.append("Strong winds are expected. Secure loose objects and be cautious while driving.")
+
+    # --- FALLBACK ---
+    if not shortdescription:
+        shortdescription =  "A pleasant day"
+        long_description.append("Overall, a pleasant day with mild weather conditions. Perfect for outdoor activities, or simply relaxing with family and friends.")
+
+    return shortdescription, " ".join(long_description)
+
 def warning_check(prediction_dict):
+    long_warning = []
     warnings = []  
     # Check precipitation warnings
     precip = prediction_dict.get("precip")
@@ -58,30 +122,41 @@ def warning_check(prediction_dict):
         prediction_dict["precip"] = 0
     if precip > 20:
         warnings.append("Severe Flooding possible")
+      
     elif precip > 10:
         warnings.append("Flooding Warning")
+       
     elif precip > 5:
         warnings.append("Flooding Advisory")
+       
     elif precip == 0:
         warnings.append("No Rainfall Expected")
+
+
 
     # Check feels-like max temperature warnings
     feelslikemax = prediction_dict.get("feelslikemax c")
     if feelslikemax > 40:
         warnings.append("Severe Heat Warning")
+  
     elif feelslikemax > 35:
         warnings.append("Heat Warning")
+        
     elif feelslikemax > 30:
         warnings.append("Heat Advisory")
+        
 
     # Check windspeed warnings
     windspeed = prediction_dict.get("windspeed")
     if windspeed > 20:
         warnings.append("Severe Wind Warning")
+       
     elif windspeed > 15:
-        warnings.append("Wind Waning")
+        warnings.append("Wind Warning")
+     
     elif windspeed > 10:
         warnings.append("Wind Advisory")
+       
 
     # If no warnings were added, return "No Warnings"
     if not warnings:
@@ -181,14 +256,15 @@ def predict(date,location):
                 "warnings": week_warnings[-1]
             })
 
-        warnings = week_warnings[0]
+            warnings= week_warnings[0]
+            short_description, long_description = descriptions(week_predictions[0])
 
         for target in target_features:
             del models[target]
 
         location = location_encoder.inverse_transform([int(location_encoded)])[0]
 
-        return render_template('result.html', location=location, date=date, warnings=warnings, predictions=week_predictions), 200
+        return render_template('result.html', location=location, date=date, warnings=warnings, predictions=week_predictions, descriptions=long_description, short_descriptions=short_description), 200
 
     except Exception as e:
         error_message = f"Error during result rendering: {str(e)}"
