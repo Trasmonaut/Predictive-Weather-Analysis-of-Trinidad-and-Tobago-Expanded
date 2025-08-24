@@ -63,39 +63,48 @@ def descriptions(prediction_dict):
     if precipcover >= 70 and rainfall >= 10:
         shortdescription=  "Heavy widespread rainfall"
         long_description.extend("Expect heavy rainfall across the region.")
+        bgImage = "overcast"
     if precipcover >= 50 and rainfall >= 5:
         shortdescription=  "Widespread rain expected"
         long_description.append("Widespread rain is anticipated across large regions of this area.")
     if precipcover >= 50 and rainfall < 5:
         shortdescription=  "Scattered light showers"
         long_description.append("Light showers are possible throughout the day.")
+        bgImage = "rain"
     if precipcover < 50 and rainfall >= 5:
         shortdescription=  "Isolated showers expected"
         long_description.append("Isolated showers are expected in some areas.")
+        bgImage = "rain"
     if precipcover < 50 and rainfall < 5 and rainfall > 0:
         shortdescription=  "Light rain possible"
         long_description.append("Light rain is possible, but amounts are expected to be minimal.")
+        bgImage = "rain"
 
     # --- HEAT PRIORITY ---
     if temp >= 35 and humidity >= 70:
         shortdescription=  "Dangerously hot conditions"
         long_description.append("Extreme heat combined with high humidity may lead to heat-related illnesses. Stay hydrated and avoid strenuous outdoor activities.")
+        bgImage = "sunny"
     if temp >= 30:
         shortdescription=  "Generally hot weather"
         long_description.append("Generally hot weather is expected. Stay hydrated and avoid strenuous outdoor activities.")
+        bgImage = "sunny"
 
     if humidity >= 75:
         shortdescription=  "Oppressive humidity"
         long_description.append("High humidity levels may cause discomfort. Take precautions to stay cool.")
+        bgImage = "humid"
 
 
     # --- CLOUD PRIORITY ---
     if cloudcover >= 70:
         shortdescription=  "Overcast cloudy skies"
         long_description.append("Expect overcast conditions with limited sunshine throughout the day.")
+        bgImage = "overcast"
     if cloudcover < 40:
         shortdescription=  "Partly cloudy skies"
         long_description.append("Partly cloudy skies are expected throughout the day.")
+        bgImage = "cloudy"
     if cloudcover < 20:
         shortdescription=  "Mostly sunny skies"
         long_description.append("Mostly sunny skies are expected throughout the day.")
@@ -109,8 +118,9 @@ def descriptions(prediction_dict):
     if not shortdescription:
         shortdescription =  "A pleasant day"
         long_description.append("Overall, a pleasant day with mild weather conditions. Perfect for outdoor activities, or simply relaxing with family and friends.")
+    
 
-    return shortdescription, " ".join(long_description)
+    return shortdescription, " ".join(long_description), bgImage
 
 def warning_check(prediction_dict):
     long_warning = []
@@ -257,14 +267,14 @@ def predict(date,location):
             })
 
             warnings= week_warnings[0]
-            short_description, long_description = descriptions(week_predictions[0])
+            short_description, long_description, bgImage = descriptions(week_predictions[0])
 
         for target in target_features:
             del models[target]
 
         location = location_encoder.inverse_transform([int(location_encoded)])[0]
 
-        return render_template('result.html', location=location, date=date, warnings=warnings, predictions=week_predictions, descriptions=long_description, short_descriptions=short_description), 200
+        return render_template('result.html', location=location, date=date, warnings=warnings, predictions=week_predictions, descriptions=long_description, short_descriptions=short_description, image= bgImage), 200
 
     except Exception as e:
         error_message = f"Error during result rendering: {str(e)}"
