@@ -1,6 +1,6 @@
 # Overview 
 
-This repository is an extension of my Data Science project completed at the University of the West Indies. It focuses on building a predictive weather model for Trinidad and Tobago using historical weather data and advanced machine learning techniques. By leveraging XGBoost and Chained Multioutput Regression, the project delivers highly accurate weather forecasts for 16 regions across the country. The resulting model powers TTWeatherPredict, a web-based application that allows users to input a date and location to receive detailed weather predictions. This tool aims to support better planning and decision-making by providing insights into future weather conditions based on historical trends.
+This repository is an extension of my Data Science project completed at the University of the West Indies. It focuses on building a predictive weather model for Trinidad and Tobago using historical weather data and advanced machine learning techniques. By leveraging XGBoost and Chained Multioutput Regression, the project delivers highly accurate weather forecasts for 16 regions across the country. The resulting model powers TTWeatherPredict, a web-based application that allows users to input a date and location to receive detailed weather predictions. This tool aims to support better planning and decision-making by providing insights into future weather conditions based on historical trends. Check out the WIKI for more infomration in detail
 
 ###
 # Introduction
@@ -16,7 +16,7 @@ These models were used to form the back end of a website, where users can input 
 
 ###
 # XGBoost and Weather Prediction
-This app uses XGBoost to make it's predictions, through Chained Multiouput Regression, where the output from one model is used to influence the output of the one that follows it. The result is a model with an average of 98.47% accuracy, on Time Series data for Trinidad and Tobago.
+This app uses XGBoost to make it's predictions, through Chained Multiouput Regression, where the output from one model is used to influence the output of the one that follows it. 
 
 ###
 # Weather Prediction app - TTPredict
