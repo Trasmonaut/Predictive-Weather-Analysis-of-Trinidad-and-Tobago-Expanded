@@ -129,6 +129,7 @@ def descriptions(prediction_dict):
     # --- FALLBACK ---
     if not shortdescription:
         shortdescription =  "A pleasant day"
+        bgImage = "default"
         long_description.append("Overall, a pleasant day with mild weather conditions. Perfect for outdoor activities, or simply relaxing with family and friends.")
     
 

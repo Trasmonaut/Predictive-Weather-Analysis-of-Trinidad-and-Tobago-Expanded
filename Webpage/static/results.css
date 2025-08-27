@@ -213,13 +213,49 @@ margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+   
+}
 
+.main-results-default{
+    background-image: url(/static/assets/BackgroundImages/default.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.main-results-overcast{
+    background-image: url(/static/assets/BackgroundImages/overcast.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.main-results-rain{
+    background-image: url(/static/assets/BackgroundImages/rain.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.main-results-sunny{
+    background-image: url(/static/assets/BackgroundImages/sunny.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.main-results-humid{
+    background-image: url(/static/assets/BackgroundImages/humid.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.main-results-cloudy{
+    background-image: url(/static/assets/BackgroundImages/cloudy.webp);
+    background-size: cover;
+    background-position: center;
 }
 
 .date{
     font-family: 'Amiko';
     font-size:16px;
-    color: var(--Black);
+    color: var(--white);
 
 }
 .location-date-table {
@@ -239,14 +275,14 @@ margin-bottom: 50px;
     font-family: 'Amaranth';
     font-weight: bold;
     font-size: 48px;
-    color: var(--Black);
+    color: var(--white);
     text-transform: uppercase;
 }
 
 .time{
     font-family: 'Amiko';
     font-size: 16px;
-    color: var(--Black);
+    color: var(--white);
    
 }
 
@@ -263,21 +299,21 @@ margin-bottom: 50px;
     padding: 8px;
     font-family: 'Amiko';
     font-size: 16px;
-    color: var(--Black);
+    color: var(--white);
     
 }
 
 .mainDescription {
     font-family: 'Amiko';
     font-size: 28px;
-    color: var(--Black);
+    color: var(--white);
     font-style: bolder;
 }
 
 .detailedDescription {
     font-family: 'Amiko';
     font-size: 18px;
-    color: var(--Black);
+    color: var(--white);
 
 }
 
@@ -285,13 +321,13 @@ margin-bottom: 50px;
 .minor-details-title, .main-weather-details-title {
     font-family: 'Amiko';
     font-size: 14px;
-    color: var(--Black);
+    color: var(--white);
 }
 
 .minor-details-content, .main-weather-details{
     font-family: 'Amiko';
     font-size: 22px;
-    color: var(--Black);
+    color: var(--white);
 }
 
 .minor-details-table, .main-weather-table {
@@ -309,5 +345,5 @@ margin-bottom: 50px;
 }
 
 .icons{
-    color: var(--Black);
+    color: var(--white);
 }
