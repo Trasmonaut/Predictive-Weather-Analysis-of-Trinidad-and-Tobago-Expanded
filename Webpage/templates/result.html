@@ -9,20 +9,21 @@
 {% block content %}
    
     <!--The main results section-->
-    <section class = "main-results main-results-default"> 
-        <div class = "row">    <!-- Create an inital row for the date and location section-->
-            <table class = "location-date-table">
-                <tr>
-                    <td class = "location">{{ location }}</td>
-                    <td class = "date">{{ date }}</td>
-                </tr>
-            </table>
-        </div>
+    <section class = "main-results-section main-results-{{image}} hide-on-small-only"> 
+        
+                <div class ="row">    <!-- Main results section-->
+                        <div class = "col s6"> <!-- Left Half-->
+                            <div class = "row">    <!-- Create an inital row for the date and location section-->
+                        <table class = "location-date-table">
+                            <tr>
+                                <td class = "location">{{ location }}</td>
+                                <td class = "date">{{ date }}</td>
+                            </tr>
+                        </table>
+                    </div>          
 
-        <div class ="row">    <!-- Main results section-->
-            <div class = "col s6"> <!-- Left Half-->
                 
-                    <table class = "sunrise-sunset-table centered">
+                    <table class = "sunrise-sunset-table">
                         <tr>
                             <td class = "time"> {{ predictions[0].sunrise }} am</td>
                             <td class = "time"> {{ predictions[0].sunset }} pm</td>
@@ -35,13 +36,11 @@
                     </table>
               
 
-
-                <p class = " mainDescription">{{short_descriptions }}</p>
+                       <p class = " mainDescription">{{short_descriptions }}</p>
                 <p class = "detailedDescription">{{descriptions}} {{predictions[0].warnings }}.</p>
 
-
                 
-                <table class="minor-details-table centered">
+                <table class="minor-details-table">
                     <tr>
                         <td class = "minor-details-content"> {{predictions[0].feelslikemax | round(1) }}°C</td>
                         
@@ -58,7 +57,7 @@
             </div>
 
 
-            <div class="col s6"> <!-- Right Half-->
+            <div class="col s4 offset-s2"> <!-- Right Half-->
                 <table class = "main-weather-table centered">
                     <tr>
                         <td class="main-weather-details"> {{ predictions[0].avgtemp | round(1) }}°C</td>
@@ -117,13 +116,73 @@
 
         </div>
 
-            
-
-            </div>
-
-        </div>
 
 
+        
+    </section>
+
+
+    <section class ="main-results-mobile hide-on-med-and-up">
+        <h1 class ="results-title highlight">{{location}} Weather Report</h1>
+        <p class="mobile-results-date">{{date}}</p>
+
+        <p class="mobile-results-main-description">{{short_descriptions }}</p>
+        <p class="mobile-results-detailed-description">{{descriptions}} {{predictions[0].warnings }}.</p>
+
+        <p class="mobile-results-main-weather"> {{ predictions[0].avgtemp | round(1) }}°C</p>
+        <p class="mobile-results-sub-heading"> Average Temperature </p>
+        <p class="mobile-results-sub-weather">{{predictions[0].tempmax | round(1) }}°C / {{predictions[0].tempmin | round(1) }}°C</p>
+        <p class = "mobile-results-sub-heading">Max Temperature / Min Temperature </p>
+
+        <table>
+            <tr>
+                <td class="mobile-results-table-details">Relative Max Temperature <i class="fa-solid fa-temperature-half"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].feelslikemax | round(1) }}°C</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Relative Min Temperature <i class="fa-solid fa-temperature-half"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].feelslikemin | round(1) }}°C</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details"> Humidity <i class="fa-solid fa-water"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].humidity | int }}%</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Wind Speed <i class="fa-solid fa-wind"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].windspeed | round(1) }} mph</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Cloud Cover <i class="fa-solid fa-cloud"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].cloudcover | int }}%</td>
+            </tr>   
+            <tr>
+                <td class="mobile-results-table-details">Rainfall <i class="fa-solid fa-umbrella"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].precip | round(3) }} mm</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Precipitation Cover <i class="fa-solid fa-cloud-showers-heavy"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].precipcover | default(0) | round(1) }}%</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Dew Point <i class="fa-solid fa-leaf"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].dewpoint | round(1) }}°C</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Visibility <i class="fa-solid fa-eye"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].visibility | round(1) }} miles</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Sunrise <i class="fa-solid fa-sun"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].sunrise }} am</td>
+            </tr>
+            <tr>
+                <td class="mobile-results-table-details">Sunset <i class="fa-solid fa-moon"></i></td>
+                <td class="mobile-results-table-details"> {{ predictions[0].sunset }} pm</td>
+            </tr>
+          
+
+
+        </table>
 
     </section>
 
