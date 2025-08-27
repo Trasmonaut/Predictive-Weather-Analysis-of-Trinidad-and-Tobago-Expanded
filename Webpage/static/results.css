@@ -12,6 +12,12 @@
     --DarkGreen:       #022a1d;
 
 }
+
+.body .html{
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
 .title{
     font-family:'Jura';
     font-weight: bold;
@@ -192,7 +198,7 @@ margin-bottom: 50px;
 .results-title{
     font-family: 'Amaranth';
     font-weight: bold;
-    font-size: 32px;
+    font-size: 48px;
     color: var(--Black);
     text-align: center;
     margin-bottom: 20px;
@@ -200,4 +206,108 @@ margin-bottom: 50px;
 
 .Warnings, .results{
     margin-top: 50px;
+}
+
+.main-results {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.date{
+    font-family: 'Amiko';
+    font-size:16px;
+    color: var(--Black);
+
+}
+.location-date-table {
+  border-collapse: collapse;
+  border-color: transparent !important;
+
+}
+.location-date-table td, .location-date-table tr {
+   border: none !important;
+   display: inline-block;
+   justify-content: flex-end;
+   padding-bottom: 0;
+   padding-top: 0;
+}
+
+.location{
+    font-family: 'Amaranth';
+    font-weight: bold;
+    font-size: 48px;
+    color: var(--Black);
+    text-transform: uppercase;
+}
+
+.time{
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--Black);
+   
+}
+
+.sunrise-sunset-table {
+    width: 30%;
+    border-collapse: collapse;
+    border-color: transparent !important;
+    padding: 0px;
+}
+
+.sunrise-sunset-table tr, .sunrise-sunset-table td {
+    border: none !important;
+    text-align: left;
+    padding: 8px;
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--Black);
+    
+}
+
+.mainDescription {
+    font-family: 'Amiko';
+    font-size: 28px;
+    color: var(--Black);
+    font-style: bolder;
+}
+
+.detailedDescription {
+    font-family: 'Amiko';
+    font-size: 18px;
+    color: var(--Black);
+
+}
+
+
+.minor-details-title, .main-weather-details-title {
+    font-family: 'Amiko';
+    font-size: 14px;
+    color: var(--Black);
+}
+
+.minor-details-content, .main-weather-details{
+    font-family: 'Amiko';
+    font-size: 22px;
+    color: var(--Black);
+}
+
+.minor-details-table, .main-weather-table {
+    margin-top:auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.minor-details-table td, .minor-details-table tr, .main-weather-table td, .main-weather-table tr {
+   border: none !important;
+  
+   justify-content: flex-end;
+   padding-bottom: 0;
+   padding-top: 0;
+}
+
+.icons{
+    color: var(--Black);
 }

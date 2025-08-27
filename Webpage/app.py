@@ -1,21 +1,29 @@
-from flask import Flask, render_template, request, redirect, url_for, get_flashed_messages, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 import joblib
-import sklearn
 import pandas as pd
-import numpy as np
 from datetime import datetime
-import os
+
 
 app = Flask(__name__)
-app.secret_key="Paul_taylor"
+app.secret_key="Paul_taylor"   #Temporarily hardcode cause who cares in this isntance
+
+
+target_features=['avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
+        'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
+        'solarenergy','sunrise','sunset','visibility','windspeed','winddir']
+
+#Base paths
+label_encoder_path= "WeatherModel/Models/label_encoder.pkl"
+base_weather_models_path= "WeatherModel/models/temp_based/"   #Current weather models based on Temp based model
+
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/TermsAndConditions')
-def TermsAndConditions():
+@app.route('/terms-and-conditions')
+def terms_and_conditions():
     return render_template('TermsAndConditions.html')
 
 @app.errorhandler(404)
@@ -59,38 +67,46 @@ def descriptions(prediction_dict):
     rainfall = prediction_dict.get("precip", 0)
     windspeed = prediction_dict.get("windspeed", 0)
 
+
+    # Order Rain -> Wind -> Heat -> Cloud -> Fallback
     # --- RAIN PRIORITY ---
     if precipcover >= 70 and rainfall >= 10:
         shortdescription=  "Heavy widespread rainfall"
         long_description.extend("Expect heavy rainfall across the region.")
         bgImage = "overcast"
-    if precipcover >= 50 and rainfall >= 5:
+    elif precipcover >= 50 and rainfall >= 5:
         shortdescription=  "Widespread rain expected"
         long_description.append("Widespread rain is anticipated across large regions of this area.")
-    if precipcover >= 50 and rainfall < 5:
+    elif precipcover >= 50 and rainfall < 5:
         shortdescription=  "Scattered light showers"
         long_description.append("Light showers are possible throughout the day.")
         bgImage = "rain"
-    if precipcover < 50 and rainfall >= 5:
+    elif precipcover < 50 and rainfall >= 5:
         shortdescription=  "Isolated showers expected"
         long_description.append("Isolated showers are expected in some areas.")
         bgImage = "rain"
-    if precipcover < 50 and rainfall < 5 and rainfall > 0:
+    elif precipcover < 50 and rainfall < 5 and rainfall > 0:
         shortdescription=  "Light rain possible"
         long_description.append("Light rain is possible, but amounts are expected to be minimal.")
         bgImage = "rain"
+
+    # --- WIND CHECK (optional but important) ---
+    if windspeed >= 30:
+        shortdescription=  "Strong windy conditions"
+        long_description.append("Strong winds are expected. Secure loose objects and be cautious while driving.")
+
 
     # --- HEAT PRIORITY ---
     if temp >= 35 and humidity >= 70:
         shortdescription=  "Dangerously hot conditions"
         long_description.append("Extreme heat combined with high humidity may lead to heat-related illnesses. Stay hydrated and avoid strenuous outdoor activities.")
         bgImage = "sunny"
-    if temp >= 30:
+    elif temp >= 30:
         shortdescription=  "Generally hot weather"
         long_description.append("Generally hot weather is expected. Stay hydrated and avoid strenuous outdoor activities.")
         bgImage = "sunny"
 
-    if humidity >= 75:
+    elif humidity >= 75:
         shortdescription=  "Oppressive humidity"
         long_description.append("High humidity levels may cause discomfort. Take precautions to stay cool.")
         bgImage = "humid"
@@ -101,19 +117,15 @@ def descriptions(prediction_dict):
         shortdescription=  "Overcast cloudy skies"
         long_description.append("Expect overcast conditions with limited sunshine throughout the day.")
         bgImage = "overcast"
-    if cloudcover < 40:
+    elif cloudcover < 40:
         shortdescription=  "Partly cloudy skies"
         long_description.append("Partly cloudy skies are expected throughout the day.")
         bgImage = "cloudy"
-    if cloudcover < 20:
+    elif cloudcover < 20:
         shortdescription=  "Mostly sunny skies"
         long_description.append("Mostly sunny skies are expected throughout the day.")
 
-    # --- WIND CHECK (optional but important) ---
-    if windspeed >= 30:
-        shortdescription=  "Strong windy conditions"
-        long_description.append("Strong winds are expected. Secure loose objects and be cautious while driving.")
-
+    
     # --- FALLBACK ---
     if not shortdescription:
         shortdescription =  "A pleasant day"
@@ -201,6 +213,18 @@ def validate_inputs(date_str, location):
     return True
    
 
+def convert_date_to_string(date_str: str) -> str:
+    dt = datetime.strptime(date_str, "%d-%m-%Y")
+    day = dt.day
+
+    # Add the correct suffix
+    if 11 <= day <= 13:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+
+    return dt.strftime(f"%A %B {day}{suffix}, %Y")
+
 @app.route('/get_result', methods=['GET'])
 def go_to_result():
     date_str = request.args.get('date')
@@ -219,15 +243,11 @@ def predict(date,location):
         flash(error_message)
         return redirect(url_for('index'))
 
-    target_features=['avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
-        'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
-        'solarenergy','sunrise','sunset','visibility','windspeed','winddir']
-    
     try:
-        location_encoder = joblib.load("WeatherModel/Models/label_encoder.pkl")
+        location_encoder = joblib.load(label_encoder_path)
         models = {}
         for target in target_features:
-            models[target] = joblib.load(f"WeatherModel/models/temp_based/{target}_model.pkl")
+            models[target] = joblib.load(f"{base_weather_models_path}{target}_model.pkl")
 
         location_encoded = int(location)
         week_predictions = []
@@ -269,12 +289,17 @@ def predict(date,location):
             warnings= week_warnings[0]
             short_description, long_description, bgImage = descriptions(week_predictions[0])
 
-        for target in target_features:
-            del models[target]
-
+        convertdate = convert_date_to_string(date)
         location = location_encoder.inverse_transform([int(location_encoded)])[0]
 
-        return render_template('result.html', location=location, date=date, warnings=warnings, predictions=week_predictions, descriptions=long_description, short_descriptions=short_description, image= bgImage), 200
+        return render_template('result.html', 
+                               location=location, 
+                               date=convertdate, 
+                               warnings=warnings, 
+                               predictions=week_predictions, 
+                               descriptions=long_description, 
+                               short_descriptions=short_description, 
+                               image=bgImage), 200
 
     except Exception as e:
         error_message = f"Error during result rendering: {str(e)}"

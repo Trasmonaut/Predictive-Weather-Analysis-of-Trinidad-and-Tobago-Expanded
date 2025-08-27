@@ -3,76 +3,133 @@
 
 {% block styles %}
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='results.css') }}">
+
 {% endblock %}
 
 {% block content %}
-    <section class ="title">
-    <h2 class="main-title" style="text-align: center; font-family: Montserrat; font-weight: bold; color: #082745;">{{ date }} - {{ location }} Prediction Result</h2>
+   
+    <!--The main results section-->
+    <section class = "main-results"> 
+        <div class = "row">    <!-- Create an inital row for the date and location section-->
+            <table class = "location-date-table">
+                <tr>
+                    <td class = "location">{{ location }}</td>
+                    <td class = "date">{{ date }}</td>
+                </tr>
+            </table>
+        </div>
 
-    </section>
+        <div class ="row">    <!-- Main results section-->
+            <div class = "col s6"> <!-- Left Half-->
+                
+                    <table class = "sunrise-sunset-table centered">
+                        <tr>
+                            <td class = "time"> {{ predictions[0].sunrise }} am</td>
+                            <td class = "time"> {{ predictions[0].sunset }} pm</td>
+                        </tr>
 
-    <section class = "main">
-        <div class="row mainresults">
-            <div class="col s6">
-                <p> Max Temperature:</p>
-                <h1>{{ predictions[0].tempmax | round(1) }}°C</h1>
+                        <tr>
+                            <td class = "time"> Sunrise <i class="fa-solid fa-sun icons"></i></td>
+                            <td class = "time"> Sunset <i class="fa-solid fa-moon icons"></i></td>
+                        </tr>
+                    </table>
+              
 
-                <div class = "col s6">
-                    <p> Averge Temperature:</p>
-                    <h1>{{ predictions[0].avgtemp | round(1) }}°C</h1>
-                </div>  
-                <div class = "col s6">
-                    <p> Min Temperature:</p>
-                    <h1>{{ predictions[0].tempmin | round(1) }} °C</h1>
-                </div>  
+
+                <p class = " mainDescription">{{short_descriptions }}</p>
+                <p class = "detailedDescription">{{descriptions}} {{predictions[0].warnings }}.</p>
+
+
+                
+                <table class="minor-details-table centered">
+                    <tr>
+                        <td class = "minor-details-content"> {{predictions[0].feelslikemax | round(1) }}°C</td>
+                        
+                        <td class = "minor-details-content"> {{predictions[0].feelslikemin | round(1) }}°C</td>
+
+                    </tr>
+                    <tr>
+                        <td class = "minor-details-title">Max Relative Temperature</td>
+                       
+                        <td class = "minor-details-title">Min Relative Temperature</td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+            <div class="col s6"> <!-- Right Half-->
+                <table class = "main-weather-table centered">
+                    <tr>
+                        <td class="main-weather-details"> {{ predictions[0].avgtemp | round(1) }}°C</td>
+                        <td class="main-weather-details"> {{ predictions[0].avgfeelslike | round(1) }}°C</td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details-title">Average Temperature <i class="fa-solid fa-temperature-arrow-up"></i></td>
+                        <td class="main-weather-details-title">Feels Like <i class="fa-solid fa-temperature-arrow-up"></i></td>
+                    </tr>
+                    <tr>
+                        <td class = "main-weather-details">{{ predictions[0].tempmax | round(1) }}°C</td>
+                        <td class = "main-weather-details">{{ predictions[0].tempmin | round(1) }}°C</td>
+
+                    </tr>
+                        <td class = "main-weather-details-title">Max Temperature<i class="fa-solid fa-up-long"></i></td>
+                        <td class = "main-weather-details-title">Min Temperature<i class="fa-solid fa-down-long"></i></td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details"> {{ predictions[0].precip | round(3) }} mm</td>
+                        <td class="main-weather-details"> {{ predictions[0].precipcover | int }} %</td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details-title">Rainfall<i class="fa-solid fa-umbrella"></i></td>
+                        <td class="main-weather-details-title"> Rainfall Chance <i class="fa-solid fa-cloud-rain"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details"> {{ predictions[0].cloudcover | round(1) }}</td>
+                        <td class="main-weather-details"> {{ predictions[0].windspeed | round(1) }} </td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details-title"> Cloudcover % <i class="fa-solid fa-cloud icons"></i></td>
+                        <!-- htmlhint disable-next-line -->
+                        <td class="main-weather-details-title">Windspeed MPH<i class="fa-solid fa-wind" style="transform: rotate({{ predictions[0].winddir }}deg);"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details"> {{ predictions[0].dewpoint | round(1) }}°C</td>
+                        <td class="main-weather-details"> {{ predictions[0].visibility | round(1) }} miles</td>
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details-title">Dew Point <i class="fa-solid fa-leaf"></i></td>
+                        <td class="main-weather-details-title">Visibility <i class="fa-solid fa-eye icons"></i></td>
+                    </tr>
+
+                    
+
+                </table>
 
             </div>
 
-            <div class="col s6" style="text-align: center;">
-                <div class = "col s4">
-                    <h6> Relative Max Temperature: {{ predictions[0].feelslikemax | round(1) }}°C </h6>
-                </div>
-                <div class = "col s4">
-                    <h6> Relative Average Temperature: {{ predictions[0].avgfeelslike | round(1) }} °C</h6>
-                </div>
-                <div class = "col s4">
-                    <h6> Relative Min Temperature: {{ predictions[0].feelslikemin | round(1) }} °C</h6>
-                </div>
+        </div>
 
-                <div class = "col s6">
-                    <h6> Humidity: {{ predictions[0].humidity | int }} %</h6>
-                </div>
-                <div class = "col s6">
-                    <h6> Wind Speed: {{ predictions[0].windspeed | int }} mph</h6>
-                </div>
-                <div class = "col s6">
-                    <h6> Cloud Cover:  {{ predictions[0].cloudcover | int }} %</h6>
-                </div>
-                <div class = "col s6">
-                    <h6> Rainfall: {{ predictions[0].precip | round(3) }} mm</h6>
-                </div>
-                <div class = "col s6">
-                    <h6> Dew Point: {{ predictions[0].dewpoint | round(1) }} °C</h6>
-                </div>
-                <div class = "col s6">
-                    <h6> Visibility: {{ predictions[0].visibility | round(1) }} miles</h6>
-                </div>
 
-                <div class = "col s12">
-                    <h3>Possible Hazards</h3>
-                    <h6> {{ warnings }} </h6>
 
-            
-                </div>
+
+
+                </table>
 
             </div>
+
         </div>
 
-        <div class="col s12">
-            <h3>Weather Descriptions</h3>
-            <h6>Short Description: {{ short_descriptions }}</h6>
-            <h6>Long Description: {{ descriptions }} {{ warnings }}</h6>
-        </div>
+
+
     </section>
 
     <section class="results center-align">
