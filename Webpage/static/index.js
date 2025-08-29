@@ -20,3 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
        
 AOS.init();
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var modalInstance = M.Modal.init(elems, {
+        opacity: 0.8,
+        dismissible: true,
+      
+    });
+
+    var modalInstance = M.Modal.getInstance(document.getElementById('modal1'));
+    modalInstance.open();
+  });
