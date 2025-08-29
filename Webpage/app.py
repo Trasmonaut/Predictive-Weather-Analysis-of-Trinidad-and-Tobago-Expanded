@@ -16,16 +16,6 @@ target_features=['avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslike
 label_encoder_path= "WeatherModel/Models/label_encoder.pkl"
 base_weather_models_path= "WeatherModel/models/temp_based/"   #Current weather models based on Temp based model
 
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/terms-and-conditions')
-def terms_and_conditions():
-    return render_template('TermsAndConditions.html')
-
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -34,6 +24,7 @@ def page_not_found(e):
 def handle_exception(e):
     error_message= request.args.get('error_message', str(e))
     return render_template('error.html', error_message=error_message), 500
+
 
 def prepare_input_from_date(date, location_encoded):
     dt = datetime.strptime(date, "%d-%m-%Y")
@@ -225,6 +216,28 @@ def convert_date_to_string(date_str: str) -> str:
         suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
 
     return dt.strftime(f"%A %B {day}{suffix}, %Y")
+
+
+#Routes 
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/terms-and-conditions')
+def terms_and_conditions():
+    return render_template('TermsAndConditions.html')
+
+@app.route('/data-visualization')
+def data_visualization():
+
+    return render_template('coming-soon.html')
+    # return render_template('DataVisualization.html')
+
+@app.route('/model-showcase')
+def model_showcase():
+    return render_template('coming-soon.html')
+    #return render_template('ModelShowcase.html')
 
 @app.route('/get_result', methods=['GET'])
 def go_to_result():
