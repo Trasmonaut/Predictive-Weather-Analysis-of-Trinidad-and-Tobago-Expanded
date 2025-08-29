@@ -21,3 +21,4 @@ This app uses XGBoost to make it's predictions, through Chained Multiouput Regre
 ###
 # Weather Prediction app - TTPredict
 These models were used to form the back end of a website, where users can input a date and location in Trinidad and Tobago, and be output with a prediction of the weather on that given date.
+![Homepage](https://github.com/Trasmonaut/Predictive-Weather-Analysis-of-Trinidad-and-Tobago-Expanded/blob/ded3f3a522db9c11160c9d897bb30ab979621fd7/Github%20Images/hero.png)
