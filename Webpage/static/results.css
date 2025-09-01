@@ -211,9 +211,8 @@ margin-bottom: 50px;
 
 .main-results-section {
     height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  
+    padding: 70px 20px 0px 20px;
     margin-bottom: 50px;    
 }
 

@@ -132,8 +132,8 @@ def warning_check(prediction_dict):
     # Check precipitation warnings
     precip = prediction_dict.get("precip")
     if precip is not None and precip < 0:
-        precip = 0  # Ensure precip is not negative
-        prediction_dict["precip"] = 0
+        precip = 0.000  # Ensure precip is not negative
+        prediction_dict["precip"] = 0.000
     if precip > 20:
         warnings.append("Severe Flooding possible")
       
@@ -274,7 +274,7 @@ def predict(date,location):
 
             # Set precip to 0 if negative
             if week_prediction_dict.get("precip") is not None and week_prediction_dict["precip"] < 0:
-                week_prediction_dict["precip"] = 0
+                week_prediction_dict["precip"] = 0.000
 
             warnings = warning_check(week_prediction_dict)
             week_warnings.append(", ".join(warnings))
