@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash , app , guinicorn
 import joblib
 import pandas as pd
 from datetime import datetime, timedelta
@@ -267,7 +267,7 @@ class Weather:
         return warnings
 
 def preload_weather_models(app, config):
-   
+
     def preload():
         # Just instantiate and load; singleton ensures it's only done once
         weather = Weather(config)
@@ -275,7 +275,7 @@ def preload_weather_models(app, config):
 
     thread = threading.Thread(target=preload, daemon=True)
     thread.start()
-  
+
 
 def create_app(config_object=Config):
     app = Flask(__name__)
@@ -348,5 +348,4 @@ def create_app(config_object=Config):
     return app
 
 if __name__ == '__main__':
-    app = create_app()
-    app.run(host='0.0.0.0', port=8080, debug=True)
+   app.run()
