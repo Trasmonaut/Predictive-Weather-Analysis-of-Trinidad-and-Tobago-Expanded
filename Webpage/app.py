@@ -348,6 +348,6 @@ def create_app(config_object=Config):
     return app
 
 if __name__ == '__main__':
-   app.run()
+   app.run(port = 0000, debug=True)
 
 app = create_app()
