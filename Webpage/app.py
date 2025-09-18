@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash , app , guinicorn
+from flask import Flask, render_template, request, redirect, url_for, flash , app
 import joblib
 import pandas as pd
 from datetime import datetime, timedelta
@@ -349,3 +349,5 @@ def create_app(config_object=Config):
 
 if __name__ == '__main__':
    app.run()
+
+app = create_app()
