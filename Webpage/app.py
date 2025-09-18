@@ -11,8 +11,8 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
-    LABEL_ENCODER_PATH = "WeatherModel/Models/label_encoder.pkl"
-    BASE_WEATHER_MODELS_PATH = "WeatherModel/models/temp_based/"
+    LABEL_ENCODER_PATH = "/weather_models/label_encoder.pkl"
+    BASE_WEATHER_MODELS_PATH = "/weather_models/temp_based/"
     TARGET_FEATURES = [
         'avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
         'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
