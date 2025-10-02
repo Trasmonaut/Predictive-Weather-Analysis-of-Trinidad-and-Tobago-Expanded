@@ -31,16 +31,17 @@ body,html{
 .hero-title{
     font-family: 'Amaranth';
     font-weight: bold;
-    font-size: 64px;
+    font-size: 64;
     color: var(--Black)
 }
+
+
 
 .hero-subtitle{
     font-family: 'Amiko';
     font-size: 24px;
     color: var(--Black);
 }
-
 
 
 .nav-wrapper{
@@ -156,7 +157,8 @@ body,html{
 }
 
 .about{
-    height: 55vh;
+    height: auto;
+
     width: 100vw;
     display: flex;
     align-items: center;
@@ -188,7 +190,6 @@ body,html{
     font-size: 22px;
     color: var(--white);
     text-align: center;
-    padding: 0px 20px 0px 20px;
 }
 
 .about-promo:hover {
@@ -318,7 +319,7 @@ body,html{
 
 .call-to-action{
     background-color: var(--Background-Green);
-    height: 55vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -330,6 +331,8 @@ body,html{
     font-size: 48px;
     color: var(--white);
 }
+
+
 
 .cta-subtitle{
     font-family: 'Amiko';
@@ -376,6 +379,9 @@ body,html{
     box-shadow: none;
     transform: scale(1.05);
 }
+
+
+
 
 .page-footer{
     background-color: var(--DarkGreen);
@@ -463,3 +469,36 @@ body,html{
     
    
   }
+
+  @media screen and (max-width: 600px) {
+    .hero-title{
+        font-size: 32px;
+    }
+    .hero-subtitlekc{
+        font-size: 16px;
+    }
+
+    .body,html{
+        overflow-x: hidden;
+        height: auto;
+    }
+
+    .about-features{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 0px 20px 0px;
+        
+    }
+
+    .cta-title{
+        font-size: 24px;
+        
+    }
+    
+    .cta-subtitle{
+        font-size: 16px;
+    }
+ 
+}
