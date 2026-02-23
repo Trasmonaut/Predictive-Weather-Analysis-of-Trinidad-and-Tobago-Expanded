@@ -74,6 +74,8 @@ def test_weather_week_forecast(mock_joblib):
     mock_model.predict.return_value = [10]  # Always predict 10 for any target
     mock_joblib.side_effect = [mock_encoder] + [mock_model]*len(Config.TARGET_FEATURES)
 
+
+
     weather = Weather(Config)
     weather.load_resources(Config)
     preds, warnings = weather.week_forecast("01-01-2022", 1)
