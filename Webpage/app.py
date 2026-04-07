@@ -20,9 +20,25 @@ class Config:
 
     
     TARGET_FEATURES = [
-        'avgtemp c','tempmax c','tempmin c','feelslikemax c','feelslikemin c','avgfeelsliketemp c',
-        'humidity','dewpoint c','precipcover','precip','cloudcover','sealevelpressure','solarradiation',
-        'solarenergy','sunrise','sunset','visibility','windspeed','winddir'
+        'cloudcover',
+        'avgtemp c',
+        'tempmax c',
+        'tempmin c',
+        'feelslikemax c',
+        'feelslikemin c',
+        'avgfeelsliketemp c',
+        'humidity',
+        'dewpoint c',
+        'precipcover',
+        'precip',
+        'sealevelpressure',
+        'solarradiation',
+        'solarenergy',
+        'sunrise',
+        'sunset',
+        'visibility',
+        'windspeed',
+        'winddir'
     ]
 
 def validate_inputs(date_str, location):
