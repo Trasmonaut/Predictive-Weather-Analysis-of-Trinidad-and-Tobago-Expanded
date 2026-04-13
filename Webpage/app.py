@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
 import threading
+import gc
 
 # Load environment variables from .env file
 load_dotenv()
@@ -130,11 +131,17 @@ class Weather:
         self.ensure_loaded(self.config)
         input_copy = input_df.copy()
         preds = {}
-        for target in self.config.TARGET_FEATURES:
-            model = self.models[target]
+        # Chain predictions: each model uses historical + previous model outputs
+        for idx, target in enumerate(self.config.TARGET_FEATURES):
+            model_path = f"{self.config.BASE_WEATHER_MODELS_PATH}{target}_model.pkl"
+            model = joblib.load(model_path, mmap_mode='r')
+            # Add previous model outputs as features
+            for prev_target in self.config.TARGET_FEATURES[:idx]:
+                input_copy[f'pred_{prev_target}'] = preds[prev_target]
             prediction = model.predict(input_copy)
             preds[target] = prediction
-            input_copy[f'pred_{target}'] = prediction
+            del model
+            gc.collect()
         return preds
 
     def week_forecast(self, date, location_encoded):
