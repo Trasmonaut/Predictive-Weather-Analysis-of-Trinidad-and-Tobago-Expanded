@@ -1,22 +1,22 @@
 Report of All models: 
-cloudcover Accuracy: 94.61%
-avgtemp c Accuracy: 96.25%
-tempmax c Accuracy: 97.40%
-tempmin c Accuracy: 97.65%
-feelslikemax c Accuracy: 98.58%
-feelslikemin c Accuracy: 99.09%
-avgfeelsliketemp c Accuracy: 98.57%
-humidity Accuracy: 97.49%
-dewpoint c Accuracy: 98.77%
-precipcover Accuracy: 98.21%
-precip Accuracy: 99.42%
-sealevelpressure Accuracy: 96.97%
-solarradiation Accuracy: 97.17%
-solarenergy Accuracy: 98.34%
-sunrise Accuracy: 98.30%
-sunset Accuracy: 98.63%
-visibility Accuracy: 99.03%
-windspeed Accuracy: 99.38%
-winddir Accuracy: 98.73%
+cloudcover Accuracy: 93.01%
+avgtemp c Accuracy: 94.98%
+tempmax c Accuracy: 96.33%
+tempmin c Accuracy: 96.71%
+feelslikemax c Accuracy: 97.94%
+feelslikemin c Accuracy: 98.41%
+avgfeelsliketemp c Accuracy: 97.69%
+humidity Accuracy: 96.09%
+dewpoint c Accuracy: 97.81%
+precipcover Accuracy: 97.57%
+precip Accuracy: 99.05%
+sealevelpressure Accuracy: 95.46%
+solarradiation Accuracy: 95.79%
+solarenergy Accuracy: 97.17%
+sunrise Accuracy: 97.30%
+sunset Accuracy: 97.63%
+visibility Accuracy: 98.52%
+windspeed Accuracy: 99.07%
+winddir Accuracy: 98.07%
 
-Average Accuracy Across Models: 98.03% 
+Average Accuracy Across Models: 97.08% 
