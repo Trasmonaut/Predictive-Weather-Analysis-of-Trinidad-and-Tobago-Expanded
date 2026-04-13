@@ -288,15 +288,7 @@ class Weather:
             warnings.append("No Warnings")
         return warnings
 
-def preload_weather_models(app, config):
-
-    def preload():
-        # Just instantiate and load; singleton ensures it's only done once
-        weather = Weather(config)
-        weather.load_resources(config)
-
-    thread = threading.Thread(target=preload, daemon=True)
-    thread.start()
+# Removed background preloading. Models will be loaded only when prediction is requested.
 
 
 def create_app(config_object=Config):
@@ -304,8 +296,7 @@ def create_app(config_object=Config):
     app.config.from_object(config_object)
     app.secret_key = app.config['SECRET_KEY']
 
-    # Start background preloading at app startup
-    preload_weather_models(app, config_object)
+    # No background preloading. Models will be loaded on demand.
 
     @app.errorhandler(404)
     def page_not_found(e):

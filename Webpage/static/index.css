@@ -31,7 +31,7 @@ body,html{
 .hero-title{
     font-family: 'Amaranth';
     font-weight: bold;
-    font-size: 64;
+    font-size: 64px;
     color: var(--Black)
 }
 
@@ -39,7 +39,7 @@ body,html{
 
 .hero-subtitle{
     font-family: 'Amiko';
-    font-size: 24px;
+    font-size: 16px;
     color: var(--Black);
 }
 
@@ -456,6 +456,8 @@ body,html{
     cursor: pointer;
     text-align: center !important; /* center contents */
 }
+
+.modal-
 
 .modal-button:hover {
     background-color: var(--Accent-Main);
