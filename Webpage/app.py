@@ -260,38 +260,39 @@ class Weather:
             precip = 0.000
             prediction_dict["precip"] = 0.000
         if precip > 20:
-            warnings.append("Severe Flooding possible")
+            warnings.append("🔴Severe Flooding possible")
         elif precip > 10:
-            warnings.append("Flooding Warning")
+            warnings.append("🟡Flooding Warning")
         elif precip > 5:
-            warnings.append("Flooding Advisory")
+            warnings.append("🔵Flooding Advisory")
         elif precip == 0:
-            warnings.append("No Rainfall Expected")
+            warnings.append("🟢No Rainfall Expected")
 
         feelslikemax = prediction_dict.get("feelslikemax c", 0)
         if feelslikemax > 40:
-            warnings.append("Severe Heat Warning")
+            warnings.append("🔴Severe Heat Warning")
         elif feelslikemax > 35:
-            warnings.append("Heat Warning")
+            warnings.append("🟡Heat Warning")
         elif feelslikemax > 30:
-            warnings.append("Heat Advisory")
+            warnings.append("🔵Heat Advisory")
 
         windspeed = prediction_dict.get("windspeed", 0)
         if windspeed > 20:
-            warnings.append("Severe Wind Warning")
+            warnings.append("🔴Severe Wind Warning")
         elif windspeed > 15:
-            warnings.append("Wind Warning")
+            warnings.append("🟡Wind Warning")
         elif windspeed > 10:
-            warnings.append("Wind Advisory")
+            warnings.append("🔵Wind Advisory")
 
         if not warnings:
-            warnings.append("No Warnings")
+            warnings.append("🟢No Warnings")
         return warnings
 
 # Removed background preloading. Models will be loaded only when prediction is requested.
 
 
 def create_app(config_object=Config):
+    __name__ = "__main__"
     app = Flask(__name__)
     app.config.from_object(config_object)
     app.secret_key = app.config['SECRET_KEY']
@@ -346,13 +347,13 @@ def create_app(config_object=Config):
             location_name = weather.label_encoder.inverse_transform([location_encoded])[0]
 
             return render_template('result.html',
-                                   location=location_name,
-                                   date=convertdate,
-                                   warnings=warnings,
-                                   predictions=week_predictions,
-                                   descriptions=long_description,
-                                   short_descriptions=short_description,
-                                   image=bgImage), 200
+                                    location=location_name,
+                                    date=convertdate,
+                                    warnings=warnings,
+                                    predictions=week_predictions,
+                                    descriptions=long_description,
+                                    short_descriptions=short_description,
+                                    image=bgImage), 200
 
         except Exception as e:
             error_message = f"Error during result rendering: {str(e)}"
@@ -360,7 +361,8 @@ def create_app(config_object=Config):
 
     return app
 
-if __name__ == '__main__':
-   app.run(port = 0000, debug=True)
-
 app = create_app()
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5100)
+

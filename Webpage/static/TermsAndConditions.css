@@ -15,66 +15,8 @@
 
 .body,html{
     width: 100%;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
 
-}
-.title{
-    font-family:'Jura';
-    font-weight: bold;
-    font-size: 20px;
-    color: var(--Black);
-}
-
-.nav-wrapper{
-    position: fixed;    
-    width: 100%;    
-    padding-left: 30px;
-    padding-right:30px;
-    
-}
-.nav-headings{
-    font-family: 'Amiko';
-    font-size: 12px;
-    color: var(--Black);
-}
-
-.nav-main-buttons{
-    background-color: var(--white);
-    border-radius: 8px;
-    color: var(--Black) !important;
-    width:auto;
-    height: 32px;
-    box-shadow: none !important;
-
-}
-
-
-.nav-action-button{
-    background-color: var(--Accent-Main);
-    border-radius: 8px;
-    color: var(--white);
-    height: 32px;
-    width: auto;
-}
-
-.nav-action-button:hover{
-    background-color: var(--Accent-Dark);
-    box-shadow: none;
-    transform: scale(1.05);
-}
-
-.nav-main-buttons:hover{
-    background-color: var(--Accent-Main);
-    box-shadow: none;
-    transform: scale(1.05);
-}
-
-.sidenav {
-    background-color: var(--LightGray);
-}
-
-.page-footer{
+    .page-footer{
     background-color: var(--DarkGreen);
     color: var(--white);
     height: auto;

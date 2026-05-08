@@ -1,0 +1,201 @@
+/* layout.css - Base common CSS for all pages */
+:root {
+    --LightGray:        #f5f4f4;
+    --DarkGray:         #444444;
+    --white:            #FFFFFF;
+    --Black:            #000000;
+
+    --Accent-Main:      #25AC83;
+    --Accent-Dark:      #1C7C5F;
+    --Accent-Light:     #3EDFAE;
+
+    --Background-Green: #053929;
+    --DarkGreen:        #021a12;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--LightGray);
+}
+
+.title {
+    font-family: 'Amiko', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--white);
+}
+
+/* Navigation Bar */
+.nav-wrapper {
+    position: fixed;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--DarkGreen);
+}
+
+.nav-headings{
+    font-family: 'Amiko', Arial, sans-serif;
+    font-size: 12px;
+    color: var(--Black);
+}
+
+
+.nav-main-buttons {
+    background-color: transparent !important;
+    border-radius: 4px;
+    color: var(--white) !important;
+    width: auto;
+    height: 32px;
+    box-shadow: none !important;
+}
+
+.nav-main-buttons-black { 
+    background-color: transparent !important;
+    border-radius: 4px;
+    color: var(--Black) !important;
+    width: auto;
+    height: 32px;
+    box-shadow: none !important;
+}
+
+.nav-action-button {
+    background-color: var(--Accent-Main);
+    border-radius: 4px;
+    color: var(--white);
+    height: 32px;
+    width: auto;
+}
+
+.nav-action-button:hover {
+    background-color: var(--Accent-Dark);
+}
+
+/* Utility classes */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* space between text and form */
+    
+}
+
+.subtitle {
+    font-family: 'Amiko', Arial, sans-serif;
+    font-size: 24px;
+    color: var(--Black);
+}
+
+.body {
+    font-family: 'Amiko', Arial, sans-serif;
+    font-size: 24px;
+    color: var(--Black);
+}
+
+/* Button */
+.return-button {
+    background-color: var(--Accent-Main);
+    width: 200px;
+    border-radius: 8px;
+    color: var(--white);
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 18px;
+}
+.return-button:hover {
+    background-color: var(--Accent-Dark);
+}
+
+.primary-text {
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--Black);
+}
+
+.primary-text-white {
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--white);
+}
+
+.secondary-text {
+    font-family: 'Amiko';
+    font-size: 14px;
+    color: var(--DarkGray);
+}
+
+.primary-title {
+    font-family: 'Jura';
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--Black);
+}
+
+.secondary-title {
+    font-family: 'Amiko';
+    font-size: 18px;
+    color: var(--Black);
+}
+
+.primary-title-white {
+    font-family: 'Jura';
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--white);
+}
+
+.secondary-title-white {
+    font-family: 'Amiko';
+    font-size: 18px;
+    color: var(--white);
+}
+
+.page-footer{
+    background-color: var(--DarkGreen);
+    color: var(--white);
+    height: auto;
+    display: flex;
+    padding: 0 15px 0 15px;
+}
+
+.footer-title{
+    font-family: 'Amaranth';
+    font-weight: bold;
+    font-size:24px;
+    color: var(--white);
+    
+}
+.footer-subtitle, .footer-bottom-text{
+    font-family: 'Amiko';
+    color: var(--white);
+}
+.footer-bottom-text{ 
+    font-size: 12px;
+    
+}
+.footer-subtitle{
+    font-size: 16px;
+}
+
+.footer-section-title{
+    font-family: 'Amiko';
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.footer-links, .footer-link{
+    font-family: 'Amiko';
+    font-size: 16px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
