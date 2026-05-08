@@ -9,22 +9,17 @@ import threading
 # Load environment variables from .env file
 load_dotenv()
 
-def create_app():
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-    app = Flask(
-        __name__,
-        template_folder=os.path.join(BASE_DIR, "templates"),
-        static_folder=os.path.join(BASE_DIR, "static")
-    )
-    return app
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
-
-
 
     LABEL_ENCODER_PATH = os.path.join(BASE_DIR, "weathermodels", "label_encoder.pkl")
     BASE_WEATHER_MODELS_PATH = os.path.join(BASE_DIR, "weathermodels", "temp_based/")
