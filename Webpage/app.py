@@ -15,6 +15,13 @@ class Config:
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # directory of this config file
 
+
+    app = Flask(
+        __name__,
+        template_folder=os.path.join(BASE_DIR, '..', 'templates'),
+        static_folder=os.path.join(BASE_DIR, '..', 'static')
+    )
+
     LABEL_ENCODER_PATH = os.path.join(BASE_DIR, "weathermodels", "label_encoder.pkl")
     BASE_WEATHER_MODELS_PATH = os.path.join(BASE_DIR, "weathermodels", "temp_based/")
 
