@@ -2,21 +2,25 @@
 
 
 {% block styles %}
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='results.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='results.css') }}">
+    <script src="{{ url_for('static', filename='results.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 {% endblock %}
 
 {% block content %}
+
    
     <!--The main results section-->
-    <section class = "main-results-section main-results-{{image}} hide-on-small-only"> 
-        
+    <section class = "main-results-section main-results-{{image}} hide-on-small-only" id = "WeatherReport"> 
+    
                 <div class ="row">    <!-- Main results section-->
                         <div class = "col s6"> <!-- Left Half-->
                             <div class = "row">    <!-- Create an inital row for the date and location section-->
                         <table class = "location-date-table">
                             <tr>
-                                <td class = "location">{{ location }}</td>
+                                <td class = "location"><i class="fa-solid fa-location-pin"></i>{{ location }}</td>
                                 <td class = "date">{{ date }}</td>
                             </tr>
                         </table>
@@ -37,23 +41,9 @@
               
 
                        <p class = " mainDescription">{{short_descriptions }}</p>
-                <p class = "detailedDescription">{{descriptions}} {{predictions[0].warnings }}.</p>
+                <p class = "detailedDescription">{{descriptions}}</p>
 
-                
-                <table class="minor-details-table">
-                    <tr>
-                        <td class = "minor-details-content"> {{predictions[0].feelslikemax | round(1) }}°C</td>
-                        
-                        <td class = "minor-details-content"> {{predictions[0].feelslikemin | round(1) }}°C</td>
 
-                    </tr>
-                    <tr>
-                        <td class = "minor-details-title">Max Relative Temperature</td>
-                       
-                        <td class = "minor-details-title">Min Relative Temperature</td>
-                    </tr>
-
-                </table>
             </div>
 
 
@@ -107,6 +97,17 @@
                         <td class="main-weather-details-title">Dew Point <i class="fa-solid fa-leaf"></i></td>
                         <td class="main-weather-details-title">Visibility <i class="fa-solid fa-eye icons"></i></td>
                     </tr>
+
+                    <tr>
+                        <td class="main-weather-details"> {{ predictions[0].feelslikemax | round(1) }}°C</td>
+                        <td class="main-weather-details"> {{ predictions[0].feelslikemin | round(1) }}°C</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="main-weather-details-title">Relative Max Temperature <i class="fa-solid fa-temperature-half"></i></td>
+                        <td class="main-weather-details-title">Relative Min Temperature <i class="fa-solid fa-temperature-half"></i></td>
+                    </tr>
                     <tr>
                         <td class="main-weather-details"> {{ predictions[0].humidity | round(1)}}%</td>
                         
@@ -122,10 +123,18 @@
 
         </div>
 
+        <div class = "watermark">
+            <p class = " primary-text watermark-text" >TT WEATHER PREDICT</p>
+        </div>
+
 
 
         
     </section>
+
+    <div class ="container center-align">
+       <button class="btn hero-button" onclick="downloadReport()">Download Weather Report</button></a>
+    </div>
 
 
     <section class ="main-results-mobile hide-on-med-and-up">
@@ -193,10 +202,33 @@
     </section>
 
     <section class="results center-align">
-        
-
             <h1 class="results-title">7- DAY WEATHER FORCAST</h1>
-            <table class="highlight centered responsive-table   " >
+
+            <div class = "hide-on-med-and-down">
+                 <p class="primary-text ">Here's a quick summary of the upcoming week:</p>
+
+                <div class = "week-summary-cards row">
+                    {% for prediction in predictions %}
+                    <div class = "col s12 m6 l4">
+                        <div class="card week-card">
+                            <div class="card-content center-align">
+                                <span class="card-title week-card-title">{{ prediction.date }}</span>
+                                
+                                <p class="week-card-summary-text">Max: {{ prediction.tempmax | round(1) }}°C</p>
+                                <p class="week-card-summary-text">Min: {{ prediction.tempmin | round(1) }}°C</p>
+                                <p class="week-card-summary-text">🌧️{{ prediction.precip | round(1) }} mm</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+    
+                <p class="primary-text ">For a more detailed look at the week ahead, check out the table below:</p>
+            
+             </div>
+
+            <table class="highlight centered responsive-table results-table white" >
                 <thead>
                   <tr>
                  <th class="table-header">Date</th>
@@ -261,19 +293,19 @@
     
             <tbody>
               <tr>
-                <td class="table-content">Advisory</td>
+                <td class="table-content">🔵Advisory</td>
                 <td class="table-content">>30°C</td>
                 <td class="table-content">>10 mph</td>
                 <td class="table-content">>5 mm</td>
               </tr>
               <tr>
-                <td class="table-content">Warning</td>
+                <td class="table-content">🟡Warning</td>
                 <td class="table-content">>35°C</td>
                 <td class="table-content">>15 mph</td>
                 <td class="table-content">>10 mm</td>
               </tr>
               <tr>
-                <td class="table-content">Severe</td>
+                <td class="table-content">🔴Severe</td>
                 <td class="table-content">>40°C</td>
                 <td class="table-content">>20 mph</td>
                 <td class="table-content">>20 mm</td>
@@ -283,8 +315,8 @@
                 
 
     </div>
-            <div class="container center return-button">
-                <a href="/"><button class="btn cta-main-button">Predict Another Date</button></a>
+            <div class="container center return-button-container">
+                <a href="/"><button class="btn hero-button">Predict Another Date</button></a>
             </div>
      </section>
 
