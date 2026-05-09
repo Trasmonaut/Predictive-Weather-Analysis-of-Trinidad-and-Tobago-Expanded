@@ -328,7 +328,8 @@ def create_app(config_object=Config):
     @app.route('/model-showcase')
     def model_showcase():
         return render_template('coming-soon.html')
-
+    
+   
     @app.route('/get_result', methods=['GET'])
     def go_to_result():
         date_str = request.args.get('date')
